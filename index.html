@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Nooré — Wrapped in Light | Modern Modest Fashion</title>
+  <title>NOORé — Wrapped in Light | Modern Modest Fashion</title>
   <!-- Google Fonts: Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -93,7 +93,7 @@
     .nav-links .btn-outline {
       border: 1px solid var(--border);
       padding: 0.6rem 1.5rem;
-      border-radius: 4px;
+      border-radius: 50px;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -102,7 +102,7 @@
     .nav-links .btn-outline:hover {
       border-color: var(--dark);
       color: var(--dark);
-      border-bottom: 1px solid var(--dark);
+      background: var(--dark);
     }
     
     /* Cart Icon Badge */
@@ -134,10 +134,10 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    /* ========== BUTTONS ========== */
+    /* ========== BUTTONS (Semua Pill Shaped) ========== */
     .btn-primary, .btn-outline {
       padding: 0.8rem 1.8rem;
-      border-radius: 4px;
+      border-radius: 50px; /* Diubah menjadi melengkung */
       font-weight: 500;
       font-size: 0.85rem;
       letter-spacing: 1px;
@@ -202,37 +202,66 @@
       transform: translateY(0);
     }
 
-    /* ========== HERO ========== */
+    /* ========== HERO (ARCH SHAPE) ========== */
     .hero {
-      background: var(--bg-soft);
-      padding: 6rem 2rem;
+      background: linear-gradient(145deg, #fdfbf9 0%, #f4ebe1 100%);
+      padding: 8rem 2rem 7rem;
       text-align: center;
-      border-radius: 8px;
-      margin: 2rem 0;
-      border: 1px solid var(--border);
+      border-radius: 280px 280px 24px 24px; /* Bentuk Pintu Lengkung (Arch) */
+      margin: 3rem auto 0;
+      border: none;
+      box-shadow: 0 15px 35px rgba(181, 141, 113, 0.08); /* Bayangan hangat */
+      position: relative;
+      overflow: hidden;
+      max-width: 1000px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -15%;
+      left: -10%;
+      width: 50%;
+      height: 70%;
+      background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
     }
     .hero h2 {
-      font-size: 2.8rem;
+      font-size: 3.2rem;
       font-weight: 300;
       color: var(--dark);
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       line-height: 1.2;
+      position: relative;
+      z-index: 1;
     }
     .hero p {
       max-width: 600px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 2.5rem;
       color: var(--text-muted);
       font-weight: 300;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero button {
+      position: relative;
+      z-index: 1;
     }
 
-    /* ========== FABRIC BAR ========== */
+    /* ========== FABRIC BAR (PILL SHAPE OVERLAP) ========== */
     .fabric-bar {
-      background: white;
-      padding: 2rem 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 4rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem 2rem;
+      border-radius: 100px; /* Kapsul memanjang */
+      box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+      margin: -3.5rem auto 5rem; /* Minus margin agar tumpang tindih dgn Hero */
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      border: 1px solid rgba(255,255,255,0.8);
     }
     .fabric-scroll {
       display: flex;
@@ -246,27 +275,95 @@
     }
     .fabric-item {
       text-align: center;
-      min-width: 80px;
-      font-weight: 400;
-      font-size: 0.8rem;
+      min-width: 70px;
+      font-weight: 500;
+      font-size: 0.75rem;
       color: var(--dark);
       text-transform: uppercase;
       letter-spacing: 1px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .fabric-item:hover {
+      transform: translateY(-4px);
     }
     .fabric-item i {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: var(--primary-dark);
       margin-bottom: 0.8rem;
       display: block;
     }
 
+    /* ========== QR CARD (LEAF SHAPE) ========== */
+    .qr-card {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border-radius: 80px 16px 80px 16px; /* Bentuk asimetris seperti Daun/Kelopak */
+      padding: 4rem 3rem;
+      margin: 5rem auto;
+      text-align: center;
+      border: none;
+      box-shadow: 0 20px 40px rgba(181, 141, 113, 0.3);
+      max-width: 900px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+    /* Tekstur/Dekorasi di dalam kartu QR */
+    .qr-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .qr-card i.floating-icon {
+      color: white !important;
+      font-size: 3rem !important;
+      position: relative;
+      z-index: 1;
+    }
+    .qr-card h3 {
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 1.3rem;
+      color: white;
+      margin: 1.5rem 0 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+    .qr-card p {
+      color: rgba(255,255,255,0.9) !important;
+      font-size: 1.05rem !important;
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .qr-card .btn-outline {
+      border-color: rgba(255,255,255,0.6);
+      color: white;
+      background: rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 1;
+    }
+    .qr-card .btn-outline:hover {
+      background: white;
+      color: var(--primary-dark);
+      border-color: white;
+    }
+
     /* ========== SECTION HEADER ========== */
     .section-header {
       text-align: center;
-      margin: 4rem 0 2rem;
+      margin: 5rem 0 3rem;
     }
     .section-title {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: 400;
       color: var(--dark);
       letter-spacing: 1px;
@@ -274,7 +371,7 @@
     }
     .section-sub {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 300;
       margin-top: 0.5rem;
     }
@@ -304,10 +401,11 @@
     
     .product-img {
       background: var(--bg-soft);
-      border-radius: 8px;
+      border-radius: 100px 100px 16px 16px; /* Fashion Arch Shape */
       overflow: hidden;
       aspect-ratio: 3/4; 
       position: relative;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
     }
     .product-img img {
       width: 100%;
@@ -338,7 +436,7 @@
     .product-card::before {
       content: "";
       position: absolute;
-      top: 50%;
+      top: 40%; /* disesuaikan dengan arch */
       left: 50%;
       width: 0;
       height: 0;
@@ -357,10 +455,11 @@
     }
 
     .product-info {
-      padding: 1rem 0;
+      padding: 1.2rem 0.5rem;
+      text-align: center; /* Dipindah ke tengah agar lebih manis dengan arch */
     }
     .product-info h4 {
-      font-size: 0.95rem; 
+      font-size: 1rem; 
       font-weight: 500;
       color: var(--dark);
       margin-bottom: 0.2rem;
@@ -373,13 +472,13 @@
     .price {
       font-weight: 600;
       color: var(--dark);
-      font-size: 0.9rem; 
+      font-size: 0.95rem; 
       margin: 0.5rem 0;
     }
     .color-dots {
       display: flex;
       gap: 8px;
-      justify-content: flex-start;
+      justify-content: center; /* Dipindah ke tengah */
       margin-top: 8px;
     }
     .dot {
@@ -389,18 +488,20 @@
       border: 1px solid var(--border);
     }
 
-    /* ========== COLOR ANALYSIS CARD ========== */
+    /* ========== COLOR ANALYSIS CARD (ORGANIC BLOB SHAPE) ========== */
     .analysis-card {
-      background: var(--bg-soft);
-      border-radius: 8px;
-      padding: 3rem;
-      margin: 1rem 0 3rem;
+      background: linear-gradient(135deg, #fdfbf9 0%, #f4ebe1 100%);
+      border-radius: 60px 24px 60px 24px; /* Organic Shape */
+      padding: 4rem 3rem;
+      margin: 2rem auto 4rem;
       text-align: center;
-      border: 1px solid var(--border);
+      border: none;
+      box-shadow: 0 10px 30px rgba(181, 141, 113, 0.05);
+      max-width: 900px;
     }
     .upload-area {
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 40px; /* Sangat melengkung */
       padding: 4rem 2rem;
       margin: 1.5rem auto;
       max-width: 600px;
@@ -451,18 +552,14 @@
       justify-content: center;
       flex-wrap: wrap;
     }
-    .upload-actions .btn-primary, .upload-actions .btn-outline {
-      border-radius: 50px;
-      padding: 0.9rem 2rem;
-    }
     video, canvas {
       max-width: 100%;
-      border-radius: 16px;
+      border-radius: 24px;
       margin: 1rem auto;
     }
     .result-season {
       background: white;
-      border-radius: 8px;
+      border-radius: 24px;
       padding: 2rem;
       margin-top: 2rem;
       border: 1px solid var(--border);
@@ -478,7 +575,7 @@
       align-items: center;
       gap: 8px;
       padding: 6px 16px;
-      border-radius: 4px;
+      border-radius: 50px;
       font-size: 0.75rem;
       font-weight: 600;
       text-transform: uppercase;
@@ -490,7 +587,7 @@
     .palette-box {
       background: var(--bg-soft);
       padding: 1rem;
-      border-radius: 4px;
+      border-radius: 16px;
       margin: 1rem 0;
       display: flex;
       flex-wrap: wrap;
@@ -507,14 +604,14 @@
     .rec-list {
       background: white;
       padding: 1rem;
-      border-radius: 4px;
+      border-radius: 16px;
       font-weight: 400;
       font-size: 0.9rem;
       margin-top: 0.5rem;
       border: 1px solid var(--border);
     }
 
-    /* ========== STYLING TUTORIALS ========== */
+    /* ========== STYLING TUTORIALS (PILLAR SHAPE) ========== */
     .tutorial-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -522,23 +619,25 @@
       margin: 2rem 0;
     }
     .tutorial-card {
-      background: transparent;
+      background: var(--bg-soft);
       border: none;
+      border-radius: 120px 120px 24px 24px; /* Bentuk Pilar Melengkung */
       overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
     }
     .tutorial-img {
-      background: var(--bg-soft);
-      height: 250px;
+      background: linear-gradient(135deg, #f4ebe1, var(--secondary));
+      height: 280px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 16px;
       font-size: 2.5rem;
-      color: var(--primary-dark);
-      border-radius: 8px;
+      color: var(--dark);
+      border-radius: 120px 120px 0 0;
     }
     .steps {
-      padding: 1.5rem 0;
+      padding: 2rem 1.5rem 1.5rem;
     }
     .step-item {
       display: flex;
@@ -549,7 +648,7 @@
       font-size: 0.9rem;
     }
     .step-num {
-      background: var(--secondary);
+      background: white;
       color: var(--dark);
       width: 24px;
       height: 24px;
@@ -560,34 +659,37 @@
       font-size: 0.75rem;
       font-weight: 600;
       flex-shrink: 0;
+      border: 1px solid var(--border);
     }
 
-    /* ========== DONATION ========== */
+    /* ========== DONATION (ORGANIC INVERTED ARCH) ========== */
     .donation-section {
-      background: var(--bg-soft);
-      border-radius: 8px;
-      padding: 3rem 2rem;
+      background: linear-gradient(145deg, #fdfbf9 0%, #f4ebe1 100%);
+      border-radius: 24px 120px 24px 120px; /* Bentuk Asimetris Premium */
+      padding: 5rem 2rem;
       margin: 2rem 0;
       text-align: center;
-      border: 1px solid var(--border);
+      border: none;
+      box-shadow: 0 10px 30px rgba(181, 141, 113, 0.05);
     }
     .donation-options {
       display: flex;
       gap: 2rem;
       justify-content: center;
       flex-wrap: wrap;
-      margin: 2rem 0;
+      margin: 2.5rem 0 2rem;
     }
     .donation-card {
       background: white;
-      border-radius: 8px;
-      padding: 2rem;
+      border-radius: 40px; /* Membulat penuh */
+      padding: 2.5rem 2rem;
       flex: 1;
       min-width: 250px;
       border: 1px solid var(--border);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.02);
     }
     .donation-card h3 {
-      margin: 1rem 0 0.5rem;
+      margin: 1.5rem 0 0.5rem;
       font-weight: 500;
     }
     .donation-card p {
@@ -596,20 +698,80 @@
       margin-bottom: 1.5rem;
     }
 
-    /* ========== QR CARD ========== */
-    .qr-card {
+    /* ========== CHECKOUT PAGE ========== */
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0 4rem;
+    }
+    .checkout-card {
       background: var(--bg-soft);
-      border-radius: 8px;
-      padding: 3rem 2rem;
-      margin: 4rem 0;
-      text-align: center;
+      border-radius: 32px; /* Soft Box */
+      padding: 2.5rem;
       border: 1px solid var(--border);
     }
-    .qr-card h3 {
+    .checkout-card h3 {
       font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border);
       font-size: 1.2rem;
+    }
+    .cart-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .cart-item img {
+      width: 80px;
+      height: 106px; /* aspect ratio 3/4 */
+      object-fit: cover;
+      border-radius: 40px 40px 8px 8px; /* Arch mini */
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--dark);
+    }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 2px solid transparent;
+      border-radius: 16px; 
+      font-family: inherit;
+      outline: none;
+      background: var(--gray-light); 
+      color: var(--dark);
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--primary-dark);
+      background: white;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+      transform: translateY(-2px); 
+    }
+    .cart-total-summary {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 2px solid var(--dark);
+      font-weight: 600;
     }
 
     /* ========== FOOTER ========== */
@@ -670,7 +832,7 @@
       color: var(--dark);
     }
 
-    /* MODAL STYLES */
+    /* MODAL STYLES (ROUNDED) */
     .modal {
       display: none; 
       position: fixed; 
@@ -684,9 +846,9 @@
     }
     .modal > div {
       background: white !important;
-      border-radius: 8px !important;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1) !important;
-      border: 1px solid var(--border);
+      border-radius: 32px !important; /* Modal yang sangat lembut */
+      box-shadow: 0 15px 50px rgba(0,0,0,0.15) !important;
+      border: none;
     }
     
     /* Product Cart Modal Specifics */
@@ -702,7 +864,7 @@
       gap: 2.5rem;
     }
     .pm-img-wrapper {
-      border-radius: 8px;
+      border-radius: 100px 100px 24px 24px; /* Arch shape for modal image */
       overflow: hidden;
       aspect-ratio: 3/4;
       background: var(--bg-soft);
@@ -754,7 +916,7 @@
     .size-btn {
       padding: 0.6rem 1.5rem;
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 50px; /* Pill Shape */
       background: transparent;
       cursor: pointer;
       font-family: inherit;
@@ -774,8 +936,9 @@
       display: inline-flex;
       align-items: center;
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 50px; /* Pill Shape */
       margin-bottom: 2rem;
+      overflow: hidden;
     }
     .qty-btn {
       padding: 0.6rem 1.2rem;
@@ -817,18 +980,25 @@
       color: var(--dark);
     }
 
+    /* Penyesuaian Responsif untuk lengkungan organik */
+    @media (max-width: 800px) {
+      .navbar { flex-direction: column; gap: 1rem; padding: 1rem; }
+      .hero { border-radius: 120px 120px 16px 16px; padding: 6rem 1rem 5rem; }
+      .hero h2 { font-size: 2.2rem; }
+      .fabric-bar { border-radius: 24px; margin-top: -2.5rem; padding: 1rem; }
+      .qr-card { border-radius: 40px 12px 40px 12px; padding: 3rem 1.5rem; }
+      .product-img { border-radius: 80px 80px 16px 16px; }
+      .analysis-card { border-radius: 40px 16px 40px 16px; padding: 3rem 1.5rem; }
+      .tutorial-card { border-radius: 80px 80px 16px 16px; }
+      .tutorial-img { border-radius: 80px 80px 0 0; }
+      .donation-section { border-radius: 16px 80px 16px 80px; padding: 3rem 1.5rem; }
+      .cart-btn { margin-left: 0; }
+    }
     @media (max-width: 768px) {
       .pm-grid { grid-template-columns: 1fr; gap: 1.5rem; }
       .product-modal-content { padding: 1.5rem; height: 90vh; overflow-y: auto; }
-      .pm-img-wrapper { aspect-ratio: 1/1; }
-    }
-
-    @media (max-width: 800px) {
-      .navbar { flex-direction: column; gap: 1rem; padding: 1rem; }
-      .hero h2 { font-size: 2rem; }
-      .hero { padding: 4rem 1rem; }
-      .fabric-scroll { gap: 2rem; }
-      .cart-btn { margin-left: 0; }
+      .pm-img-wrapper { aspect-ratio: 1/1; border-radius: 60px 60px 16px 16px; }
+      .checkout-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -836,7 +1006,7 @@
 
 <nav class="navbar">
   <div class="logo">
-    <h1>Nooré</h1>
+    <h1>NOORé</h1>
     <span>Wrapped in Light</span>
   </div>
   <div class="nav-links">
@@ -848,7 +1018,7 @@
     <button class="btn-outline">Sign In</button>
     
     <!-- Cart Icon -->
-    <div class="cart-btn" onclick="alert('Membuka halaman keranjang belanja...')">
+    <div class="cart-btn" onclick="navigateToPage('checkout')">
       <i class="fas fa-shopping-bag"></i>
       <span id="cartBadge">0</span>
     </div>
@@ -861,7 +1031,7 @@
     <div class="container">
       <div class="hero">
         <h2>Discover Confidence,<br>Wrapped in Light.</h2>
-        <p>Nooré — Modest fashion dengan kurasi warna personal berbasis AI & sentuhan afirmasi yang menenangkan.</p>
+        <p>NOORé — Modest fashion dengan kurasi warna personal berbasis AI & sentuhan afirmasi yang menenangkan.</p>
         <button class="btn-primary" onclick="navigateToPage('color')">
           Find Your Season <i class="fas fa-arrow-right"></i>
         </button>
@@ -878,10 +1048,10 @@
       </div>
 
       <div class="qr-card reveal">
-        <i class="fas fa-qrcode floating-icon" style="font-size: 2.5rem; color: var(--primary-dark);"></i>
-        <h3 style="margin: 1rem 0 0.5rem;">Filosofi & Afirmasi</h3>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">Setiap hijab Nooré dilengkapi label cerdas. Scan untuk menerima afirmasi personal.</p>
-        <button class="btn-outline" style="margin-top: 1.5rem;" onclick="openAffirmationModal('Cahaya (Noor) merepresentasikan petunjuk, harapan, dan keindahan yang bersumber dari dalam jiwa.', '✨ Aku percaya pada cahaya dan kebaikan yang ada dalam diriku. ✨')"><i class="fas fa-qrcode"></i> Demo Scan Label</button>
+        <i class="fas fa-qrcode floating-icon"></i>
+        <h3>Filosofi & Afirmasi</h3>
+        <p>Setiap hijab NOORé dilengkapi label cerdas. Scan untuk menerima afirmasi personal.</p>
+        <button class="btn-outline" onclick="openAffirmationModal('Cahaya merepresentasikan petunjuk, harapan, dan keindahan yang bersumber dari dalam jiwa.', '✨ Aku percaya pada cahaya dan kebaikan yang ada dalam diriku. ✨')"><i class="fas fa-qrcode"></i> Demo Scan Label</button>
       </div>
 
       <div class="section-header reveal">
@@ -959,8 +1129,8 @@
               <video id="video" autoplay playsinline style="border: 4px solid var(--secondary); box-shadow: 0 10px 30px rgba(0,0,0,0.08);"></video>
             </div>
             <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
-              <button id="capturePhotoBtn" class="btn-primary" disabled style="border-radius: 50px;"><i class="fas fa-magic"></i> Analisis Sekarang</button>
-              <button id="stopCameraBtn" class="btn-outline" style="border-radius: 50px;">Batal</button>
+              <button id="capturePhotoBtn" class="btn-primary" disabled><i class="fas fa-magic"></i> Analisis Sekarang</button>
+              <button id="stopCameraBtn" class="btn-outline">Batal</button>
             </div>
           </div>
           <canvas id="hiddenCanvas" style="display: none;"></canvas>
@@ -1024,7 +1194,7 @@
             <h4>Olive Whisper</h4>
             <p>Autumn / Warm Tone</p>
             <div class="price">IDR 129.000</div>
-            <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="event.stopPropagation(); openAffirmationModal('Warna hijau zaitun melambangkan kedamaian, pertumbuhan, dan harmoni yang mengakar pada alam.', '🌿 Aku tumbuh dengan penuh syukur dan membawa ketenangan di sekitarku.')">Scan Affirmation</button>
+            <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="event.stopPropagation(); openAffirmationModal('Olive Whisper lahir dari inspirasi alam. Kami yakin warna hijau zaitun ini sangat harmonis dengan undertone hangat khas wanita muslim Indonesia, memberikan efek cerah natural dan membawa nuansa kedamaian.', '🌿 Aku tumbuh dengan penuh syukur dan membawa ketenangan di sekitarku.')">Scan Affirmation</button>
           </div>
         </div>
 
@@ -1034,7 +1204,7 @@
             <h4>Midnight Sapphire</h4>
             <p>Winter / Cool Tone</p>
             <div class="price">IDR 149.000</div>
-            <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="event.stopPropagation(); openAffirmationModal('Biru safir merepresentasikan kedalaman pikiran, ketenangan batin, dan keanggunan yang elegan.', '💙 Aku melangkah dengan tenang, percaya diri, dan memancarkan keanggunan.')">Scan Affirmation</button>
+            <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="event.stopPropagation(); openAffirmationModal('Kami mendesain Midnight Sapphire karena kami percaya warna kulit wanita muslim Indonesia akan semakin bersinar dan memancarkan pesona yang sangat elegan saat dipadukan dengan rona biru gelap ini.', '💙 Aku melangkah dengan tenang, percaya diri, dan memancarkan keanggunan.')">Scan Affirmation</button>
           </div>
         </div>
 
@@ -1044,7 +1214,7 @@
             <h4>Rustic Terracotta</h4>
             <p>Neutral / Warm Tone</p>
             <div class="price">IDR 119.000</div>
-            <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="event.stopPropagation(); openAffirmationModal('Warna bata (terracotta) memancarkan kehangatan, kekuatan, dan keberanian yang membumi.', '🔥 Aku adalah pribadi yang kuat, hangat, dan selalu berpijak pada kebaikan.')">Scan Affirmation</button>
+            <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="event.stopPropagation(); openAffirmationModal('Terinspirasi dari pesona kulit sawo matang eksotis wanita Indonesia, warna bata (terracotta) ini kami pilih secara khusus untuk menonjolkan kehangatan, kekuatan, dan karakter yang membumi.', '🔥 Aku adalah pribadi yang kuat, hangat, dan selalu berpijak pada kebaikan.')">Scan Affirmation</button>
           </div>
         </div>
 
@@ -1054,7 +1224,7 @@
             <h4>Dusty Rose</h4>
             <p>Neutral / All Seasons</p>
             <div class="price">IDR 139.000</div>
-            <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="event.stopPropagation(); openAffirmationModal('Merah muda pudar menonjolkan kelembutan hati, kasih sayang, dan keindahan yang bersahaja.', '🌸 Aku merangkul kelembutan diriku dan menyebarkan kasih sayang.')">Scan Affirmation</button>
+            <button class="btn-outline" style="width: 100%; margin-top: 10px;" onclick="event.stopPropagation(); openAffirmationModal('Kami menghadirkan Dusty Rose sebagai warna netral yang universal. Paduan merah muda pudar ini akan melembutkan rona wajah wanita Indonesia, memancarkan kasih sayang dan keanggunan bersahaja.', '🌸 Aku merangkul kelembutan diriku dan menyebarkan kasih sayang setiap harinya.')">Scan Affirmation</button>
           </div>
         </div>
       </div>
@@ -1065,7 +1235,7 @@
   <div id="donation-page" class="page">
     <div class="container">
       <div class="section-header reveal">
-        <h2 class="section-title">Nooré Cares</h2>
+        <h2 class="section-title">NOORé Cares</h2>
         <p class="section-sub">Berbagi kebaikan dalam setiap helai kain. 5% profit untuk pemberdayaan.</p>
       </div>
       <div class="donation-section reveal">
@@ -1080,11 +1250,66 @@
           <div class="donation-card reveal" style="transition-delay: 0.2s;">
             <i class="fas fa-hands-clapping" style="font-size: 1.5rem; color: var(--text-muted);"></i>
             <h3>Sedekah Hijab</h3>
-            <p>Program #NooréBerkah untuk mendistribusikan hijab ke daerah pelosok.</p>
+            <p>Program #NOORéBerkah untuk mendistribusikan hijab ke daerah pelosok.</p>
             <button class="btn-outline" style="width: 100%;" onclick="alert('Terima kasih! Info: kitabisa.com/nooré')">Pelajari Program</button>
           </div>
         </div>
         <p style="font-size: 0.85rem; color: var(--text-muted);">Mitra resmi: Kitabisa, BAZNAS & LAZISMU</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT PAGE -->
+  <div id="checkout-page" class="page">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Keranjang Belanja</h2>
+        <p class="section-sub">Selesaikan pesanan Anda dengan mengisi detail pengiriman.</p>
+      </div>
+      <div class="checkout-grid">
+        <!-- Kolom Ringkasan -->
+        <div class="checkout-card reveal" style="transition-delay: 0.1s;">
+          <h3><i class="fas fa-shopping-bag"></i> Ringkasan Pesanan</h3>
+          <div id="cart-items-container">
+            <p style="color: var(--text-muted); text-align: center; padding: 2rem 0;">Keranjang belanja Anda masih kosong.</p>
+          </div>
+          <div class="cart-total-summary">
+            <span>Total Pembayaran:</span>
+            <span id="cart-grand-total">IDR 0</span>
+          </div>
+        </div>
+        
+        <!-- Kolom Form -->
+        <div class="checkout-card reveal" style="transition-delay: 0.2s;">
+          <h3><i class="fas fa-map-marker-alt"></i> Pengiriman & Pembayaran</h3>
+          <form onsubmit="processCheckout(event)">
+            <div class="form-group">
+              <label>Nama Penerima</label>
+              <input type="text" required placeholder="Masukkan nama penerima">
+            </div>
+            <div class="form-group">
+              <label>Nomor WhatsApp</label>
+              <input type="tel" required placeholder="08xx-xxxx-xxxx">
+            </div>
+            <div class="form-group">
+              <label>Alamat Lengkap</label>
+              <textarea required placeholder="Nama jalan, gang, RT/RW, kecamatan, nomor rumah..." rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Metode Pembayaran</label>
+              <select required>
+                <option value="">-- Pilih Metode Pembayaran --</option>
+                <option value="bca">Transfer Bank BCA</option>
+                <option value="mandiri">Transfer Bank Mandiri</option>
+                <option value="qris">QRIS (Gopay, OVO, Dana)</option>
+                <option value="cod">Bayar di Tempat (COD)</option>
+              </select>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 1rem; padding: 1.2rem; font-size: 1rem;">
+              Buat Pesanan Sekarang <i class="fas fa-arrow-right"></i>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -1094,7 +1319,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col" style="flex: 1; min-width: 200px;">
-        <h3 style="font-size: 1.2rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem; color: var(--dark);">Nooré</h3>
+        <h3 style="font-size: 1.2rem; font-weight: 600; letter-spacing: 2px; margin-bottom: 1rem; color: var(--dark);">NOORé</h3>
         <p>Wrapped in Light.<br>Curated modest fashion tailored for your unique colors.</p>
       </div>
       <div class="footer-col">
@@ -1123,7 +1348,7 @@
       </div>
     </div>
     <div style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--text-muted);">
-      © 2026 Nooré. All rights reserved.
+      © 2026 NOORé. All rights reserved.
     </div>
   </div>
 </footer>
@@ -1135,7 +1360,7 @@
     <i class="fas fa-qrcode" style="font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 1rem;"></i>
     <h3 style="font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; font-size: 1.1rem;">Filosofi & Afirmasi</h3>
     
-    <div style="background: var(--bg-soft); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: left; border: 1px solid var(--border);">
+    <div style="background: var(--bg-soft); padding: 1rem; border-radius: 16px; margin-bottom: 1.5rem; text-align: left; border: 1px solid var(--border);">
       <p style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 0.3rem; color: var(--primary-dark);">Filosofi Warna</p>
       <p id="philosophyText" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;"></p>
     </div>
@@ -1208,7 +1433,8 @@
     color: document.getElementById('color-page'),
     styling: document.getElementById('styling-page'),
     collection: document.getElementById('collection-page'),
-    donation: document.getElementById('donation-page')
+    donation: document.getElementById('donation-page'),
+    checkout: document.getElementById('checkout-page')
   };
   const navBtns = document.querySelectorAll('.nav-links button[data-page]');
   const footerNav = document.querySelectorAll('.footer-link');
@@ -1413,11 +1639,6 @@
   function selectSize(btnElement) {
     document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('active'));
     btnElement.classList.add('active');
-    
-    // Jika ukuran Syar'i biasanya ada tambahan harga, bisa disesuaikan di sini (opsional)
-    // Misalnya tambah 20.000:
-    // currentProductPrice = basePrice + (btnElement.getAttribute('data-size') === 'Syari' ? 20000 : 0);
-    // updateTotalPrice();
   }
 
   function changeQty(amount) {
@@ -1435,18 +1656,92 @@
     document.getElementById('pm-total-price').innerText = formatIDR(total);
   }
 
+  let cartData = [];
+
   function addToCart() {
+    let size = document.querySelector('.size-btn.active').getAttribute('data-size');
+    let itemName = document.getElementById('pm-title').innerText;
+    let itemImg = document.getElementById('pm-img').src;
+
+    cartData.push({
+        name: itemName,
+        price: currentProductPrice,
+        qty: currentQty,
+        size: size,
+        img: itemImg
+    });
+
     totalCartItems += currentQty;
     const badge = document.getElementById('cartBadge');
     badge.innerText = totalCartItems;
     badge.style.display = 'flex';
     
     closeProductModal();
+    renderCart();
     
-    // Feedback sementara
-    setTimeout(() => {
-      alert("Produk berhasil ditambahkan ke keranjang!");
-    }, 200);
+    // Arahkan ke halaman checkout setelah menambahkan produk
+    navigateToPage('checkout');
+  }
+
+  function renderCart() {
+    const container = document.getElementById('cart-items-container');
+    const totalEl = document.getElementById('cart-grand-total');
+    
+    if (cartData.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-muted); text-align: center; padding: 2rem 0;">Keranjang belanja Anda masih kosong.</p>';
+        totalEl.innerText = 'IDR 0';
+        return;
+    }
+
+    let html = '';
+    let grandTotal = 0;
+    cartData.forEach((item, index) => {
+        let itemTotal = item.price * item.qty;
+        grandTotal += itemTotal;
+        html += `
+        <div class="cart-item">
+            <img src="${item.img}" alt="${item.name}">
+            <div style="flex: 1;">
+                <h4 style="margin-bottom: 0.2rem; font-size: 1rem;">${item.name}</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">Ukuran: ${item.size} <br> Qty: ${item.qty}</p>
+                <div style="font-weight: 600; color: var(--primary-dark);">${formatIDR(itemTotal)}</div>
+            </div>
+            <button onclick="removeCartItem(${index})" style="background:none; border:none; color:#d9534f; cursor:pointer; align-self: flex-start; font-size:1.1rem;"><i class="fas fa-trash"></i></button>
+        </div>
+        `;
+    });
+    container.innerHTML = html;
+    totalEl.innerText = formatIDR(grandTotal);
+  }
+
+  function removeCartItem(index) {
+    totalCartItems -= cartData[index].qty;
+    cartData.splice(index, 1);
+    
+    const badge = document.getElementById('cartBadge');
+    badge.innerText = totalCartItems;
+    if(totalCartItems <= 0) badge.style.display = 'none';
+    
+    renderCart();
+  }
+
+  function processCheckout(e) {
+    e.preventDefault();
+    if(cartData.length === 0) {
+        alert("Keranjang Anda masih kosong. Silakan tambahkan produk terlebih dahulu!");
+        return;
+    }
+    
+    alert("Terima kasih! Pesanan Anda berhasil dibuat. Tim kami akan segera menghubungi Anda melalui WhatsApp untuk proses selanjutnya.");
+    
+    // Bersihkan keranjang setelah pesanan selesai
+    cartData = [];
+    totalCartItems = 0;
+    document.getElementById('cartBadge').style.display = 'none';
+    renderCart();
+    e.target.reset(); // Reset form isian
+    
+    navigateToPage('home'); // Kembali ke home
   }
 
   // Tutup modal jika klik area luar kotak
