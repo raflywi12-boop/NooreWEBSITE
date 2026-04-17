@@ -99,11 +99,6 @@
       letter-spacing: 1px;
       font-size: 0.8rem;
     }
-    .nav-links .btn-outline:hover {
-      border-color: var(--dark);
-      color: var(--dark);
-      background: var(--dark);
-    }
     
     /* Cart Icon Badge */
     .cart-btn {
@@ -113,9 +108,6 @@
       color: var(--dark);
       transition: 0.3s;
       margin-left: 0.5rem;
-    }
-    .cart-btn:hover {
-      color: var(--primary-dark);
     }
     #cartBadge {
       position: absolute;
@@ -158,90 +150,24 @@
       background: transparent;
       color: var(--dark);
     }
-    .btn-outline {
-      background: transparent;
-      color: var(--dark);
-      border: 1px solid var(--border);
-    }
-    .btn-outline:hover {
-      border-color: var(--dark);
-    }
-
-    /* ========== PAGE TRANSITION & ANIMATIONS ========== */
-    .page {
-      display: none;
-      animation: fadeIn 0.5s ease-out forwards;
-    }
-    .page.active-page {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-8px); }
-      100% { transform: translateY(0px); }
-    }
-    .floating-icon {
-      animation: float 3s ease-in-out infinite;
-      display: inline-block;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     /* ========== HERO ========== */
     .hero {
       background: linear-gradient(145deg, #fdfbf9 0%, #f4ebe1 100%);
       padding: 8rem 2rem 7rem;
       text-align: center;
-      border-radius: 280px 280px 24px 24px;
+      border-radius: 280px 280px 32px 32px;
       margin: 3rem auto 0;
-      border: none;
       box-shadow: 0 15px 35px rgba(181, 141, 113, 0.08);
       position: relative;
       overflow: hidden;
       max-width: 1000px;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -15%;
-      left: -10%;
-      width: 50%;
-      height: 70%;
-      background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-    }
     .hero h2 {
       font-size: 3.2rem;
       font-weight: 300;
-      color: var(--dark);
       margin-bottom: 1.2rem;
       line-height: 1.2;
-      position: relative;
-      z-index: 1;
-    }
-    .hero p {
-      max-width: 600px;
-      margin: 0 auto 2.5rem;
-      color: var(--text-muted);
-      font-weight: 300;
-      font-size: 1.1rem;
-      position: relative;
-      z-index: 1;
     }
 
     /* ========== FABRIC BAR ========== */
@@ -259,22 +185,13 @@
     }
     .fabric-scroll {
       display: flex;
-      overflow-x: auto;
-      gap: 4rem;
       justify-content: center;
-      padding: 0.5rem 1rem;
-    }
-    .fabric-scroll::-webkit-scrollbar {
-      display: none;
+      gap: 4rem;
     }
     .fabric-item {
       text-align: center;
-      min-width: 70px;
-      font-weight: 500;
       font-size: 0.75rem;
-      color: var(--dark);
       text-transform: uppercase;
-      letter-spacing: 1px;
     }
     .fabric-item i {
       font-size: 1.6rem;
@@ -283,10 +200,10 @@
       display: block;
     }
 
-    /* ========== QR CARD ========== */
+    /* ========== QR CARD (LEAF SHAPE RESTORED) ========== */
     .qr-card {
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      border-radius: 80px 16px 80px 16px;
+      border-radius: 80px 16px 80px 16px; /* Bentuk asimetris seperti Daun/Kelopak */
       padding: 4rem 3rem;
       margin: 5rem auto;
       text-align: center;
@@ -297,66 +214,54 @@
       overflow: hidden;
       color: white;
     }
-    .qr-card i.floating-icon {
-      color: white !important;
-      font-size: 3rem !important;
-    }
-    .qr-card h3 {
-      font-weight: 500;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-size: 1.3rem;
-      color: white;
-      margin: 1.5rem 0 0.8rem;
-    }
-    .qr-card p {
-      color: rgba(255,255,255,0.9) !important;
-      font-size: 1.05rem !important;
-      max-width: 500px;
-      margin: 0 auto 2rem;
+    .qr-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
+      border-radius: 50%;
+      pointer-events: none;
     }
 
-    /* ========== PRODUCT GRID ========== */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0 4rem;
-    }
-    .product-card {
-      background: transparent;
-      border: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: left;
-      cursor: pointer;
+    /* ========== COLOR ANALYSIS CARD ========== */
+    .analysis-card {
+      background: #ffffff;
+      border-radius: 40px; 
+      padding: 5rem 3rem;
+      margin: 2rem auto 4rem;
+      text-align: center;
+      border: 1.5px solid var(--primary);
+      box-shadow: 0 30px 60px rgba(62, 56, 52, 0.08);
+      max-width: 900px;
       position: relative;
-    }
-    .product-card:hover {
-      transform: translateY(-5px);
-    }
-    .product-img {
-      background: var(--bg-soft);
-      border-radius: 100px 100px 16px 16px;
       overflow: hidden;
-      aspect-ratio: 3/4; 
-      position: relative;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.03);
     }
-    .product-img img {
+    .analysis-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: radial-gradient(var(--border) 1px, transparent 1px);
+      background-size: 25px 25px;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    /* ========== PRODUCT IMAGES (NON-ARCH) ========== */
+    .product-img-container {
+      border-radius: 16px; /* Tidak melengkung ekstrim/arch lagi */
+      overflow: hidden; 
+      aspect-ratio: 3/4; 
+      background: var(--bg-soft);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: relative;
+    }
+    .product-img-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-    .product-info {
-      padding: 1.2rem 0.5rem;
-      text-align: center;
-    }
-    .price {
-      font-weight: 600;
-      color: var(--dark);
-      font-size: 0.95rem; 
-      margin: 0.5rem 0;
     }
 
     /* ========== STYLING TUTORIALS ========== */
@@ -368,14 +273,14 @@
     }
     .tutorial-card {
       background: var(--bg-soft);
-      border: none;
-      border-radius: 120px 120px 24px 24px;
+      border-radius: 120px 120px 32px 32px;
       overflow: hidden;
       box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+      text-align: center;
     }
     .tutorial-img {
-      background: linear-gradient(135deg, #f4ebe1, var(--secondary));
-      height: 380px; 
+      background: var(--secondary);
+      height: 440px; 
       display: flex;
       align-items: center;
       justify-content: center;
@@ -387,163 +292,50 @@
       height: 100%;
       object-fit: cover;
       position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    }
-    .tutorial-img i {
-      position: relative;
-      z-index: 0;
-      font-size: 3rem;
-      color: rgba(62, 56, 52, 0.1);
-    }
-    .steps {
-      padding: 2rem 1.5rem 1.5rem;
-    }
-    .step-item {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 12px;
-      font-weight: 300;
-      color: var(--dark);
-      font-size: 0.9rem;
-    }
-    .step-num {
-      background: white;
-      color: var(--dark);
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 600;
-      flex-shrink: 0;
-      border: 1px solid var(--border);
+      top: 0; left: 0;
+      z-index: 2;
     }
 
-    /* ========== DONATION ========== */
-    .donation-section {
-      background: linear-gradient(145deg, #fdfbf9 0%, #f4ebe1 100%);
-      border-radius: 24px 120px 24px 120px;
-      padding: 5rem 2rem;
-      margin: 2rem 0;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(181, 141, 113, 0.05);
+    /* ========== MODAL STYLES ========== */
+    .size-selector {
+        display: flex;
+        gap: 10px;
+        margin: 1.5rem 0;
     }
-    .donation-options {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 2.5rem 0 2rem;
+    .size-btn {
+        padding: 0.8rem 1.5rem;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background: white;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: 500;
+        flex: 1;
     }
-    .donation-card {
-      background: white;
-      border-radius: 40px;
-      padding: 2.5rem 2rem;
-      flex: 1;
-      min-width: 250px;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+    .size-btn.active {
+        border-color: var(--primary-dark);
+        background: var(--primary-dark);
+        color: white;
     }
 
-    /* ========== CHECKOUT ========== */
-    .checkout-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 2rem;
-      margin: 2rem 0 4rem;
-    }
-    .checkout-card {
-      background: var(--bg-soft);
-      border-radius: 32px;
-      padding: 2.5rem;
-      border: 1px solid var(--border);
-    }
-    .form-group input, .form-group textarea, .form-group select {
-      width: 100%;
-      padding: 1rem 1.2rem;
-      border: 2px solid transparent;
-      border-radius: 16px;
-      background: var(--gray-light);
-      outline: none;
-      transition: 0.3s;
-    }
-    .form-group input:focus { border-color: var(--primary-dark); background: white; }
-    .cart-total-summary {
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.2rem;
-      margin-top: 1.5rem;
-      padding-top: 1rem;
-      border-top: 2px solid var(--dark);
-      font-weight: 600;
-    }
+    /* ========== NAVIGATION & UTILS ========== */
+    .page { display: none; animation: fadeIn 0.5s ease-out forwards; }
+    .page.active-page { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .close-btn { position: absolute; top: 1rem; right: 1.5rem; cursor: pointer; font-size: 1.5rem; }
 
     /* ========== FOOTER ========== */
-    footer {
-      background: var(--bg-soft);
-      color: var(--dark);
-      padding: 4rem 2rem 2rem;
-      margin-top: 5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ========== MODALS ========== */
-    .modal {
-      display: none; 
-      position: fixed; 
-      top: 0; left: 0; 
-      width: 100%; height: 100%; 
-      background: rgba(0,0,0,0.4); 
-      backdrop-filter: blur(4px); 
-      justify-content: center; 
-      align-items: center; 
-      z-index: 1000;
-    }
-    .modal > div {
-      background: white !important;
-      border-radius: 32px !important;
-      padding: 2.5rem;
-    }
-    
-    .product-modal-content {
-      width: 90%;
-      max-width: 800px;
-      padding: 2.5rem;
-      position: relative;
-    }
-    .pm-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-    }
-    .pm-img-wrapper {
-      border-radius: 100px 100px 24px 24px;
-      overflow: hidden;
-      aspect-ratio: 3/4;
-      background: var(--bg-soft);
-    }
-    .pm-img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .pm-details {
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+    footer { background: var(--bg-soft); padding: 4rem 2rem; border-top: 1px solid var(--border); text-align: center; }
 
     @media (max-width: 800px) {
       .navbar { flex-direction: column; gap: 1rem; padding: 1rem; }
-      .hero { border-radius: 120px 120px 16px 16px; padding: 6rem 1rem 5rem; }
+      .hero { border-radius: 120px 120px 24px 24px; }
       .hero h2 { font-size: 2.2rem; }
-      .product-img { border-radius: 80px 80px 16px 16px; }
-      .checkout-grid { grid-template-columns: 1fr; }
+      .tutorial-img { height: 400px; }
     }
   </style>
 </head>
@@ -559,7 +351,7 @@
     <button data-page="color">Color Analysis</button>
     <button data-page="styling">Styling</button>
     <button data-page="collection">Collection</button>
-    <button data-page="donation">Noor Cares</button>
+    <button data-page="donation">NOORé Cares</button>
     <button class="btn-outline">Sign In</button>
     <div class="cart-btn" onclick="navigateToPage('checkout')">
       <i class="fas fa-shopping-bag"></i>
@@ -590,45 +382,45 @@
         </div>
       </div>
 
+      <!-- FILOSOFI & AFIRMASI (RESTORED LEAF SHAPE) -->
       <div class="qr-card reveal">
-        <i class="fas fa-qrcode floating-icon"></i>
-        <h3>Filosofi & Afirmasi</h3>
-        <p>Setiap hijab NOORé dilengkapi label cerdas. Scan untuk menerima afirmasi personal.</p>
-        <button class="btn-outline" onclick="openAffirmationModal('Cahaya merepresentasikan petunjuk, harapan, dan keindahan yang bersumber dari dalam jiwa.', '✨ Aku percaya pada cahaya dan kebaikan yang ada dalam diriku. ✨')"><i class="fas fa-qrcode"></i> Demo Scan Label</button>
+        <i class="fas fa-qrcode floating-icon" style="font-size: 3.5rem; color: white;"></i>
+        <h3 style="margin: 1.5rem 0 0.8rem; letter-spacing: 2px;">FILOSOFI & AFIRMASI</h3>
+        <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Setiap hijab NOORé dilengkapi label cerdas. Scan untuk menerima afirmasi personal dan memahami filosofi di balik warna pilihan Anda.</p>
+        <button class="btn-outline" style="border-color: rgba(255,255,255,0.6); color: white;" onclick="openAffirmationModal('Cahaya merepresentasikan petunjuk, harapan, dan keindahan yang bersumber dari dalam jiwa.', '✨ Aku percaya pada cahaya dan kebaikan yang ada dalam diriku. ✨')"><i class="fas fa-qrcode"></i> Demo Scan Label</button>
       </div>
 
-      <div class="section-header reveal">
-        <h2 class="section-title">New Arrivals</h2>
-        <p class="section-sub">Koleksi terbaru dengan palet warna yang terinspirasi dari alam.</p>
+      <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+        <h2 style="font-size: 2rem; font-weight: 400;">New Arrivals</h2>
       </div>
       
-      <div class="product-grid">
-        <div class="product-card reveal" onclick="openProductModal('Olive Whisper', 'Voal Premium - Autumn Palette', 129000, 'olive whisper.jpeg')">
-          <div class="product-img"><img src="olive whisper.jpeg" alt="Olive Whisper"></div>
-          <div class="product-info">
-            <h4>Olive Whisper</h4>
-            <div class="price">IDR 129.000</div>
+      <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+        <div class="product-card reveal" onclick="openProductModal('Olive Whisper', 'Voal Premium', 129000, 'olive whisper.jpeg')">
+          <div class="product-img-container"><img src="olive whisper.jpeg" alt="Olive Whisper"></div>
+          <div style="padding: 1.5rem 0.5rem; text-align: center;">
+            <h4 style="font-size:0.95rem; font-weight:500;">Olive Whisper</h4>
+            <div style="font-weight:600; color:var(--dark); margin-top:0.5rem;">IDR 129.000</div>
           </div>
         </div>
-        <div class="product-card reveal" onclick="openProductModal('Midnight Sapphire', 'Jersey Blend - Winter Palette', 149000, 'midnight sapphire.jpeg')">
-          <div class="product-img"><img src="midnight sapphire.jpeg" alt="Midnight Sapphire"></div>
-          <div class="product-info">
-            <h4>Midnight Sapphire</h4>
-            <div class="price">IDR 149.000</div>
+        <div class="product-card reveal" onclick="openProductModal('Midnight Sapphire', 'Jersey Blend', 149000, 'midnight sapphire.jpeg')">
+          <div class="product-img-container"><img src="midnight sapphire.jpeg" alt="Midnight Sapphire"></div>
+          <div style="padding: 1.5rem 0.5rem; text-align: center;">
+            <h4 style="font-size:0.95rem; font-weight:500;">Midnight Sapphire</h4>
+            <div style="font-weight:600; color:var(--dark); margin-top:0.5rem;">IDR 149.000</div>
           </div>
         </div>
-        <div class="product-card reveal" onclick="openProductModal('Rustic Terracotta', 'Viscose - Warm Earth', 119000, 'RUSTIC TERACOTTA.jpeg')">
-          <div class="product-img"><img src="RUSTIC TERACOTTA.jpeg" alt="Rustic Terracotta"></div>
-          <div class="product-info">
-            <h4>Rustic Terracotta</h4>
-            <div class="price">IDR 119.000</div>
+        <div class="product-card reveal" onclick="openProductModal('Rustic Terracotta', 'Viscose Silk', 119000, 'RUSTIC TERACOTTA.jpeg')">
+          <div class="product-img-container"><img src="RUSTIC TERACOTTA.jpeg" alt="Rustic Terracotta"></div>
+          <div style="padding: 1.5rem 0.5rem; text-align: center;">
+            <h4 style="font-size:0.95rem; font-weight:500;">Rustic Terracotta</h4>
+            <div style="font-weight:600; color:var(--dark); margin-top:0.5rem;">IDR 119.000</div>
           </div>
         </div>
-        <div class="product-card reveal" onclick="openProductModal('Dusty Rose', 'Chiffon - Neutral Tone', 139000, 'dusty rose.jpeg')">
-          <div class="product-img"><img src="dusty rose.jpeg" alt="Dusty Rose"></div>
-          <div class="product-info">
-            <h4>Dusty Rose</h4>
-            <div class="price">IDR 139.000</div>
+        <div class="product-card reveal" onclick="openProductModal('Dusty Rose', 'Chiffon Premium', 139000, 'dusty rose.jpeg')">
+          <div class="product-img-container"><img src="dusty rose.jpeg" alt="Dusty Rose"></div>
+          <div style="padding: 1.5rem 0.5rem; text-align: center;">
+            <h4 style="font-size:0.95rem; font-weight:500;">Dusty Rose</h4>
+            <div style="font-weight:600; color:var(--dark); margin-top:0.5rem;">IDR 139.000</div>
           </div>
         </div>
       </div>
@@ -638,29 +430,30 @@
   <!-- COLOR ANALYSIS PAGE -->
   <div id="color-page" class="page">
     <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">Seasonal Color Analysis</h2>
-        <p class="section-sub">Ketahui undertone dan palet warna yang memancarkan auramu.</p>
+      <div class="section-header" style="text-align: center; margin: 4rem 0 2rem;">
+        <h2 style="font-size: 2rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px;">Color Profile Analysis</h2>
+        <p style="color: var(--text-muted);">Temukan palet warna yang paling memancarkan auramu.</p>
       </div>
       <div class="analysis-card reveal">
         <div class="upload-area">
-          <div class="upload-icon-wrapper"><i class="fas fa-camera-retro"></i></div>
-          <h3 class="upload-title">Yuk, cari warna terbaikmu! ✨</h3>
-          <div class="upload-actions">
-            <button id="openCameraBtn" class="btn-primary"><i class="fas fa-camera"></i> Ambil Foto</button>
+          <div style="font-size: 3.5rem; color: var(--primary-dark); margin-bottom: 1.5rem;"><i class="fas fa-camera-retro"></i></div>
+          <h3 style="margin-bottom: 1rem; font-weight: 500;">Mulai Analisis Personal Kamu ✨</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;">Ambil selfie di bawah cahaya matahari natural untuk hasil yang paling akurat.</p>
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <button id="openCameraBtn" class="btn-primary" style="padding: 1rem 2rem;"><i class="fas fa-camera"></i> Ambil Foto</button>
             <input type="file" id="uploadPhoto" accept="image/*" style="display: none;">
-            <button id="uploadBtn" class="btn-outline"><i class="fas fa-image"></i> Pilih Galeri</button>
+            <button id="uploadBtn" class="btn-outline" style="padding: 1rem 2rem;"><i class="fas fa-image"></i> Pilih Galeri</button>
           </div>
           <div id="cameraContainer" style="display: none; margin-top: 2rem;">
-            <video id="video" autoplay playsinline style="border-radius: 24px; max-width: 100%;"></video>
-            <div style="margin-top: 1rem;">
+            <video id="video" autoplay playsinline style="border-radius: 24px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.1);"></video>
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
               <button id="capturePhotoBtn" class="btn-primary" disabled>Analisis Sekarang</button>
               <button id="stopCameraBtn" class="btn-outline">Batal</button>
             </div>
           </div>
           <canvas id="hiddenCanvas" style="display: none;"></canvas>
         </div>
-        <div id="analysisResult" class="result-season"></div>
+        <div id="analysisResult" style="margin-top: 2rem; text-align: left; display: none; padding: 2rem; background: var(--bg-soft); border-radius: 24px; border: 1px solid var(--border);"></div>
       </div>
     </div>
   </div>
@@ -668,44 +461,66 @@
   <!-- STYLING PAGE -->
   <div id="styling-page" class="page">
     <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">Hijab Styling Guide</h2>
-        <p class="section-sub">Inspirasi gaya dari pakar modest fashion.</p>
+      <div class="section-header" style="text-align: center; margin: 4rem 0 2rem;">
+        <h2 style="font-size: 2rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px;">Hijab Styling Guide</h2>
+        <p style="color: var(--text-muted);">Panduan eksklusif dari pakar modest fashion NOORé.</p>
       </div>
       <div class="tutorial-grid">
-        <!-- Tutorial 1 (VID 1 - Kiri) -->
         <div class="tutorial-card reveal">
           <div class="tutorial-img">
-            <video src="VID 1.mp4" class="styling-video" autoplay loop muted playsinline></video>
+            <video src="VID%201.mp4" class="styling-video" autoplay loop muted playsinline></video>
           </div>
-          <div class="steps">
-            <div class="step-item"><span class="step-num">1</span> Letakkan hijab segi empat di kepala dengan sisi sejajar.</div>
-            <div class="step-item"><span class="step-num">2</span> Sematkan peniti di dagu, ambil satu sisi panjang.</div>
-            <div class="step-item"><span class="step-num">3</span> Sampirkan ke bahu untuk tampilan yang feminin.</div>
+          <div style="padding: 2rem 1.5rem;">
+            <div style="display: flex; gap: 10px; margin-bottom: 12px; text-align: left;">
+              <span style="background:var(--primary); color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0;">1</span>
+              <p style="font-size:0.85rem;">Letakkan hijab segi empat di kepala dengan sisi sejajar.</p>
+            </div>
+            <div style="display: flex; gap: 10px; margin-bottom: 12px; text-align: left;">
+              <span style="background:var(--primary); color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0;">2</span>
+              <p style="font-size:0.85rem;">Sematkan jarum di dagu, lilitkan sisi panjang ke arah bahu.</p>
+            </div>
+            <div style="display: flex; gap: 10px; text-align: left;">
+              <span style="background:var(--primary); color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0;">3</span>
+              <p style="font-size:0.85rem;">Biarkan juntaian kain memberikan kesan flowy yang elegan.</p>
+            </div>
           </div>
         </div>
-
-        <!-- Tutorial 2 (VID 2 - Tengah) -->
         <div class="tutorial-card reveal">
           <div class="tutorial-img">
-            <video src="VID 2.mp4" class="styling-video" autoplay loop muted playsinline></video>
+            <video src="VID%202.mp4" class="styling-video" autoplay loop muted playsinline></video>
           </div>
-          <div class="steps">
-            <div class="step-item"><span class="step-num">1</span> Lipat hijab menjadi segitiga, kenakan di kepala.</div>
-            <div class="step-item"><span class="step-num">2</span> Silangkan kedua ujung hijab ke arah belakang leher.</div>
-            <div class="step-item"><span class="step-num">3</span> Ikat dengan rapi untuk gaya yang lebih ringkas.</div>
+          <div style="padding: 2rem 1.5rem;">
+            <div style="display: flex; gap: 10px; margin-bottom: 12px; text-align: left;">
+              <span style="background:var(--primary); color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0;">1</span>
+              <p style="font-size:0.85rem;">Lipat hijab segitiga, kenakan simetris di kepala.</p>
+            </div>
+            <div style="display: flex; gap: 10px; margin-bottom: 12px; text-align: left;">
+              <span style="background:var(--primary); color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0;">2</span>
+              <p style="font-size:0.85rem;">Silangkan kedua ujungnya ke belakang leher dan ikat rapi.</p>
+            </div>
+            <div style="display: flex; gap: 10px; text-align: left;">
+              <span style="background:var(--primary); color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0;">3</span>
+              <p style="font-size:0.85rem;">Masukkan ujungnya ke dalam kerah untuk tampilan clean look.</p>
+            </div>
           </div>
         </div>
-
-        <!-- Tutorial 3 (VID 3 - Kanan) -->
         <div class="tutorial-card reveal">
           <div class="tutorial-img">
-            <video src="VID 3.mp4" class="styling-video" autoplay loop muted playsinline></video>
+            <video src="VID%203.mp4" class="styling-video" autoplay loop muted playsinline></video>
           </div>
-          <div class="steps">
-            <div class="step-item"><span class="step-num">1</span> Gunakan pashmina dengan satu sisi jauh lebih panjang.</div>
-            <div class="step-item"><span class="step-num">2</span> Sematkan jarum, lalu lilit sisi panjang ke atas kepala.</div>
-            <div class="step-item"><span class="step-num">3</span> Biarkan menjuntai natural untuk kesan elegan.</div>
+          <div style="padding: 2rem 1.5rem;">
+            <div style="display: flex; gap: 10px; margin-bottom: 12px; text-align: left;">
+              <span style="background:var(--primary); color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0;">1</span>
+              <p style="font-size:0.85rem;">Gunakan pashmina, sampirkan satu sisi ke belakang kepala.</p>
+            </div>
+            <div style="display: flex; gap: 10px; margin-bottom: 12px; text-align: left;">
+              <span style="background:var(--primary); color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0;">2</span>
+              <p style="font-size:0.85rem;">Atur draping di area dada agar terlihat bervolume cantik.</p>
+            </div>
+            <div style="display: flex; gap: 10px; text-align: left;">
+              <span style="background:var(--primary); color:white; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.7rem; flex-shrink:0;">3</span>
+              <p style="font-size:0.85rem;">Gunakan bros sebagai pemanis di sisi pundak Anda.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -715,71 +530,67 @@
   <!-- COLLECTION PAGE -->
   <div id="collection-page" class="page">
     <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">Curated For You</h2>
-        <p class="section-sub">Rekomendasi terbaik berdasarkan karakteristik warna Anda.</p>
+      <div class="section-header" style="text-align: center; margin: 4rem 0 2rem;">
+        <h2 style="font-size: 2rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px;">Curated Collection</h2>
       </div>
-      <div class="product-grid">
+      <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
         <div class="product-card reveal" onclick="openProductModal('Olive Whisper', 'Autumn / Warm Tone', 129000, 'olive whisper.jpeg')">
-          <div class="product-img"><img src="olive whisper.jpeg" alt="Olive Whisper"></div>
-          <div class="product-info">
-            <h4>Olive Whisper</h4>
-            <div class="price">IDR 129.000</div>
-            <button class="btn-outline" style="width:100%;" onclick="event.stopPropagation(); openAffirmationModal('Olive Whisper lahir dari harmoni alam untuk kulit undertone hangat.', '🌿 Aku tumbuh dengan penuh syukur.')">Scan Affirmation</button>
+          <div class="product-img-container"><img src="olive whisper.jpeg" alt="Olive Whisper"></div>
+          <div style="padding: 1.5rem 0.5rem; text-align: center;">
+            <h4 style="font-size:1rem; font-weight:500;">Olive Whisper</h4>
+            <div style="font-weight:600; color:var(--dark); margin:0.5rem 0;">IDR 129.000</div>
+            <button class="btn-outline" style="width:100%; border-radius:12px; font-size:0.7rem;" onclick="event.stopPropagation(); openAffirmationModal('Terinspirasi dari harmoni alam, Olive Whisper menonjolkan kehangatan kulit wanita muslim Indonesia.', '🌿 Aku percaya pada kebaikan yang mengalir dalam hidupku.')">Afirmasi</button>
           </div>
         </div>
         <div class="product-card reveal" onclick="openProductModal('Midnight Sapphire', 'Winter / Cool Tone', 149000, 'midnight sapphire.jpeg')">
-          <div class="product-img"><img src="midnight sapphire.jpeg" alt="Midnight Sapphire"></div>
-          <div class="product-info">
-            <h4>Midnight Sapphire</h4>
-            <div class="price">IDR 149.000</div>
-            <button class="btn-outline" style="width:100%;" onclick="event.stopPropagation(); openAffirmationModal('Midnight Sapphire memancarkan kemewahan bagi pemilik cool undertone.', '💙 Aku berharga dan bercahaya.')">Scan Affirmation</button>
+          <div class="product-img-container"><img src="midnight sapphire.jpeg" alt="Midnight Sapphire"></div>
+          <div style="padding: 1.5rem 0.5rem; text-align: center;">
+            <h4 style="font-size:1rem; font-weight:500;">Midnight Sapphire</h4>
+            <div style="font-weight:600; color:var(--dark); margin:0.5rem 0;">IDR 149.000</div>
+            <button class="btn-outline" style="width:100%; border-radius:12px; font-size:0.7rem;" onclick="event.stopPropagation(); openAffirmationModal('Biru gelap yang mewah ini kami desain khusus untuk memancarkan pesona cerah pada cool undertone.', '💙 Cahaya di dalam diriku bersinar semakin terang setiap harinya.')">Afirmasi</button>
           </div>
         </div>
         <div class="product-card reveal" onclick="openProductModal('Rustic Terracotta', 'Neutral / Warm Tone', 119000, 'RUSTIC TERACOTTA.jpeg')">
-          <div class="product-img"><img src="RUSTIC TERACOTTA.jpeg" alt="Rustic Terracotta"></div>
-          <div class="product-info">
-            <h4>Rustic Terracotta</h4>
-            <div class="price">IDR 119.000</div>
-            <button class="btn-outline" style="width:100%;" onclick="event.stopPropagation(); openAffirmationModal('Kehangatan Rustic Terracotta menonjolkan karakter wanita yang kuat.', '🔥 Aku berani dan tangguh.')">Scan Affirmation</button>
+          <div class="product-img-container"><img src="RUSTIC TERACOTTA.jpeg" alt="Rustic Terracotta"></div>
+          <div style="padding: 1.5rem 0.5rem; text-align: center;">
+            <h4 style="font-size:1rem; font-weight:500;">Rustic Terracotta</h4>
+            <div style="font-weight:600; color:var(--dark); margin:0.5rem 0;">IDR 119.000</div>
+            <button class="btn-outline" style="width:100%; border-radius:12px; font-size:0.7rem;" onclick="event.stopPropagation(); openAffirmationModal('Warna bumi yang kuat ini akan memberikan kesan eksotis dan anggun pada kulit sawo matang.', '🔥 Aku adalah pribadi yang kuat dan penuh semangat.')">Afirmasi</button>
           </div>
         </div>
         <div class="product-card reveal" onclick="openProductModal('Dusty Rose', 'Neutral / All Seasons', 139000, 'dusty rose.jpeg')">
-          <div class="product-img"><img src="dusty rose.jpeg" alt="Dusty Rose"></div>
-          <div class="product-info">
-            <h4>Dusty Rose</h4>
-            <div class="price">IDR 139.000</div>
-            <button class="btn-outline" style="width:100%;" onclick="event.stopPropagation(); openAffirmationModal('Dusty Rose memberikan kesan lembut dan keanggunan bersahaja.', '🌸 Aku merangkul kelembutan.')">Scan Affirmation</button>
+          <div class="product-img-container"><img src="dusty rose.jpeg" alt="Dusty Rose"></div>
+          <div style="padding: 1.5rem 0.5rem; text-align: center;">
+            <h4 style="font-size:1rem; font-weight:500;">Dusty Rose</h4>
+            <div style="font-weight:600; color:var(--dark); margin:0.5rem 0;">IDR 139.000</div>
+            <button class="btn-outline" style="width:100%; border-radius:12px; font-size:0.7rem;" onclick="event.stopPropagation(); openAffirmationModal('Lembut dan universal, Dusty Rose memberikan aura ketenangan dan kasih sayang pada wajahmu.', '🌸 Aku merangkul kelembutan diriku dengan rasa bangga.')">Afirmasi</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- DONATION PAGE -->
+  <!-- NOORÉ CARES (REVISED) -->
   <div id="donation-page" class="page">
     <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">NOORé Cares</h2>
-        <p class="section-sub">Berbagi kebaikan dalam setiap helai kain. 5% profit untuk pemberdayaan.</p>
+      <div class="section-header" style="text-align: center; margin: 4rem 0 2rem;">
+        <h2 style="font-size: 2rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px;">NOORé Cares</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 10px auto;">Melalui NOORé, Anda tidak hanya mendapatkan kepercayaan diri lewat pilihan warna yang tepat, tetapi juga turut serta dalam memberdayakan masyarakat melalui setiap pembelian.</p>
       </div>
-      <div class="donation-section reveal">
-        <i class="fas fa-hand-holding-heart floating-icon" style="font-size: 3.5rem; color: var(--primary-dark);"></i>
-        <div class="donation-options">
-          <div class="donation-card">
-            <i class="fas fa-mosque" style="font-size: 1.5rem; color: var(--text-muted);"></i>
-            <h3>Zakat & Infaq</h3>
-            <p>Disalurkan secara transparan via lembaga resmi BAZNAS & LAZISMU.</p>
-            <button class="btn-outline" style="width: 100%;" onclick="alert('Donation partner: Kitabisa, BAZNAS')">Mulai Donasi</button>
-          </div>
-          <div class="donation-card">
-            <i class="fas fa-hands-clapping" style="font-size: 1.5rem; color: var(--text-muted);"></i>
-            <h3>Sedekah Hijab</h3>
-            <p>Program #NOORéBerkah untuk mendistribusikan hijab ke daerah pelosok.</p>
-            <button class="btn-outline" style="width: 100%;" onclick="alert('Terima kasih! Info: kitabisa.com/nooré')">Pelajari Program</button>
-          </div>
+      <div class="donation-section reveal" style="background: linear-gradient(135deg, #fdfbf9, #f4ebe1); padding: 5rem 2rem; border-radius: 40px; text-align: center;">
+        <i class="fas fa-hand-holding-heart floating-icon" style="font-size: 4rem; color: var(--primary-dark); margin-bottom: 2rem;"></i>
+        <div class="donation-options" style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+            <div style="background: white; padding: 2.5rem; border-radius: 32px; flex: 1; min-width: 250px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+                <h3 style="font-weight:500; margin-bottom:1rem;">Program Pendidikan</h3>
+                <p style="color: var(--text-muted); margin-bottom:1.5rem; font-size:0.9rem;">Beasiswa untuk putri-putri daerah agar bisa meraih mimpi mereka.</p>
+                <button class="btn-outline" onclick="alert('Segera Hadir.')">Pelajari Program</button>
+            </div>
+            <div style="background: white; padding: 2.5rem; border-radius: 32px; flex: 1; min-width: 250px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+                <h3 style="font-weight:500; margin-bottom:1rem;">Pemberdayaan UMKM</h3>
+                <p style="color: var(--text-muted); margin-bottom:1.5rem; font-size:0.9rem;">Pelatihan keterampilan untuk penjahit lokal di seluruh Indonesia.</p>
+                <button class="btn-outline" onclick="alert('Terima kasih atas dukungannya!')">Lihat Dampak</button>
+            </div>
         </div>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Mitra resmi: Kitabisa, BAZNAS & LAZISMU</p>
       </div>
     </div>
   </div>
@@ -787,22 +598,24 @@
   <!-- CHECKOUT PAGE -->
   <div id="checkout-page" class="page">
     <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">Checkout</h2>
+      <div class="section-header" style="text-align: center; margin: 4rem 0 2rem;">
+        <h2 style="font-size: 2rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px;">Checkout</h2>
       </div>
-      <div class="checkout-grid">
-        <div class="checkout-card reveal">
-          <h3>Ringkasan Pesanan</h3>
-          <div id="cart-items-container"><p style="text-align:center; color:var(--text-muted);">Keranjang kosong.</p></div>
-          <div class="cart-total-summary"><span>Total:</span><span id="cart-grand-total">IDR 0</span></div>
+      <div class="checkout-grid" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; margin-bottom: 5rem;">
+        <div style="background: var(--bg-soft); border-radius: 32px; padding: 2.5rem; border: 1px solid var(--border);">
+          <h3 style="font-weight:500; margin-bottom:1.5rem; border-bottom:1px solid var(--border); padding-bottom:0.8rem;">Ringkasan Pesanan</h3>
+          <div id="cart-items-container" style="margin-top: 1rem;"></div>
+          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:1.2rem; padding-top:1.5rem; border-top:2px solid var(--dark);">
+            <span>Total:</span><span id="cart-grand-total">IDR 0</span>
+          </div>
         </div>
-        <div class="checkout-card reveal">
-          <h3>Detail Pengiriman</h3>
+        <div style="background: var(--bg-soft); border-radius: 32px; padding: 2.5rem; border: 1px solid var(--border);">
+          <h3 style="font-weight:500; margin-bottom:1.5rem; border-bottom:1px solid var(--border); padding-bottom:0.8rem;">Informasi Pengiriman</h3>
           <form onsubmit="processCheckout(event)">
-            <div class="form-group"><input type="text" placeholder="Nama Penerima" required style="margin-bottom:1rem"></div>
-            <div class="form-group"><input type="tel" placeholder="Nomor WhatsApp" required style="margin-bottom:1rem"></div>
-            <div class="form-group"><textarea placeholder="Alamat Lengkap" rows="3" required style="margin-bottom:1rem"></textarea></div>
-            <button type="submit" class="btn-primary" style="width:100%;">Buat Pesanan</button>
+            <input type="text" placeholder="Nama Lengkap Penerima" required style="width:100%; padding:1.2rem; border-radius:16px; border:1.5px solid var(--border); margin-bottom:1rem; outline:none; font-family:inherit;">
+            <input type="tel" placeholder="WhatsApp (08xx-xxxx-xxxx)" required style="width:100%; padding:1.2rem; border-radius:16px; border:1.5px solid var(--border); margin-bottom:1rem; outline:none; font-family:inherit;">
+            <textarea placeholder="Alamat Lengkap" rows="3" required style="width:100%; padding:1.2rem; border-radius:16px; border:1.5px solid var(--border); margin-bottom:1.5rem; outline:none; font-family:inherit;"></textarea>
+            <button type="submit" class="btn-primary" style="width:100%; padding:1.2rem; font-size:1rem; border-radius:50px;">Lanjutkan ke Pembayaran <i class="fas fa-arrow-right"></i></button>
           </form>
         </div>
       </div>
@@ -811,39 +624,49 @@
 </main>
 
 <footer>
-  <div class="container" style="text-align: center;">
-    <p>© 2026 NOORé. All rights reserved.</p>
+  <div class="container">
+    <p style="font-size:0.85rem; color:var(--text-muted); letter-spacing:1px;">© 2026 NOORé. Crafted with Light and Modesty.</p>
   </div>
 </footer>
 
 <!-- MODALS -->
 <div id="affirmationModal" class="modal">
-  <div style="max-width: 400px; text-align: center; position: relative;">
-    <span class="close-btn" style="position: absolute; top: 1rem; right: 1.5rem; cursor: pointer; font-size: 1.5rem;" onclick="closeAffirmationModal()">&times;</span>
-    <h3 style="margin-bottom: 1rem;">Filosofi & Afirmasi</h3>
-    <div style="background: var(--bg-soft); padding: 1rem; border-radius: 16px; margin-bottom: 1.5rem; text-align: left;">
-      <p id="philosophyText" style="font-size: 0.9rem; color: var(--text-muted);"></p>
+  <div style="max-width: 420px; text-align: center; position: relative;">
+    <span class="close-btn" onclick="closeAffirmationModal()">&times;</span>
+    <i class="fas fa-qrcode" style="font-size:2.5rem; color:var(--primary-dark); margin-bottom:1rem;"></i>
+    <h3 style="margin-bottom: 1.5rem; font-weight:500; letter-spacing:1px;">FILOSOFI & AFIRMASI</h3>
+    <div style="background: var(--bg-soft); padding: 1.5rem; border-radius: 24px; text-align: left; margin-bottom: 1.5rem; border:1px solid var(--border);">
+      <p style="font-size:0.75rem; font-weight:700; color:var(--primary-dark); margin-bottom:0.5rem; text-transform:uppercase;">Filosofi Desain</p>
+      <p id="philosophyText" style="font-size: 0.9rem; color: var(--text-muted); line-height:1.6;"></p>
     </div>
-    <p id="affirmationText" style="font-style: italic; font-weight: 500;"></p>
+    <p id="affirmationText" style="font-style: italic; font-weight: 500; font-size: 1.1rem; line-height:1.4; color:var(--dark);"></p>
   </div>
 </div>
 
 <div id="productModal" class="modal">
   <div class="product-modal-content">
-    <span class="close-btn" style="position: absolute; top: 1rem; right: 1.5rem; cursor: pointer; font-size: 2rem;" onclick="closeProductModal()">&times;</span>
+    <span class="close-btn" onclick="closeProductModal()">&times;</span>
     <div class="pm-grid">
-      <div class="pm-img-wrapper"><img id="pm-img" src="" alt=""></div>
+      <div class="pm-img-wrapper" style="border-radius:16px;"><img id="pm-img" src="" alt=""></div>
       <div class="pm-details">
-        <h2 id="pm-title"></h2>
-        <p id="pm-desc" style="margin-bottom: 1rem; color: var(--text-muted);"></p>
-        <div id="pm-price" style="font-weight: 700; font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 1.5rem;"></div>
-        <button class="btn-primary" onclick="addToCart()">Tambah ke Keranjang</button>
+        <h2 id="pm-title" style="font-size:1.8rem; font-weight:500;"></h2>
+        <p id="pm-desc" style="margin: 0.5rem 0 1.5rem; color: var(--text-muted); font-weight:300;"></p>
+        
+        <div style="font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">PILIH UKURAN:</div>
+        <div class="size-selector">
+            <button class="size-btn active" onclick="updatePrice(0, this)">Standard</button>
+            <button class="size-btn" onclick="updatePrice(15000, this)">Syar'i (+15rb)</button>
+        </div>
+
+        <div id="pm-price" style="font-weight: 700; font-size: 1.5rem; color: var(--primary-dark); margin-bottom: 2rem; padding-bottom:1rem; border-bottom:1px solid var(--border);"></div>
+        <button class="btn-primary" style="width:100%; padding:1.2rem; font-size:1rem; border-radius:50px;" onclick="addToCart()">Tambahkan ke Keranjang <i class="fas fa-shopping-bag"></i></button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+  // Reveal Effect
   function initReveal() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('active'); });
@@ -862,54 +685,67 @@
   };
 
   function navigateToPage(pageId) {
-    Object.values(pages).forEach(p => { 
-        if (p) p.classList.remove('active-page'); 
-    });
+    Object.values(pages).forEach(p => { if(p) p.classList.remove('active-page'); });
+    if(pages[pageId]) pages[pageId].classList.add('active-page');
     
-    if (pages[pageId]) {
-        pages[pageId].classList.add('active-page');
-    }
-    
-    document.querySelectorAll('.nav-links button[data-page]').forEach(btn => {
+    document.querySelectorAll('.nav-links button').forEach(btn => {
         if(btn.getAttribute('data-page') === pageId) btn.classList.add('active');
         else btn.classList.remove('active');
     });
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    setTimeout(() => {
-      if(pages[pageId]) {
-          pages[pageId].querySelectorAll('.reveal').forEach(r => {
-            r.classList.remove('active');
-            setTimeout(() => r.classList.add('active'), 50);
-          });
-      }
-    }, 100);
   }
 
   document.querySelectorAll('.nav-links button[data-page]').forEach(btn => {
     btn.onclick = () => navigateToPage(btn.getAttribute('data-page'));
   });
 
-  // Modal Functions
-  function openAffirmationModal(philosophy, affirmation) {
-    document.getElementById('philosophyText').innerText = philosophy;
-    document.getElementById('affirmationText').innerText = `"${affirmation}"`;
+  // Modals
+  function openAffirmationModal(phi, aff) {
+    document.getElementById('philosophyText').innerText = phi;
+    document.getElementById('affirmationText').innerText = `"${aff}"`;
     document.getElementById('affirmationModal').style.display = 'flex';
   }
   function closeAffirmationModal() { document.getElementById('affirmationModal').style.display = 'none'; }
 
   let selectedProd = {};
+  let basePrice = 0;
+  let currentAddon = 0;
+
   function openProductModal(name, desc, price, img) {
-    selectedProd = { name, desc, price, img };
+    basePrice = price;
+    currentAddon = 0;
+    selectedProd = { name, desc, price, img, size: 'Standard' };
+    
     document.getElementById('pm-title').innerText = name;
     document.getElementById('pm-desc').innerText = desc;
-    document.getElementById('pm-price').innerText = "IDR " + price.toLocaleString('id-ID');
     document.getElementById('pm-img').src = img;
+    
+    // Reset buttons
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.size-btn').classList.add('active');
+    
+    updateDisplayPrice();
     document.getElementById('productModal').style.display = 'flex';
   }
+
+  function updatePrice(addon, btn) {
+    currentAddon = addon;
+    selectedProd.size = addon > 0 ? 'Syar\'i' : 'Standard';
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    updateDisplayPrice();
+  }
+
+  function updateDisplayPrice() {
+    const finalPrice = basePrice + currentAddon;
+    selectedProd.price = finalPrice;
+    document.getElementById('pm-price').innerText = "IDR " + finalPrice.toLocaleString('id-ID');
+  }
+
   function closeProductModal() { document.getElementById('productModal').style.display = 'none'; }
 
+  // Cart Logic
   let cart = [];
   function addToCart() {
     cart.push({...selectedProd});
@@ -924,31 +760,40 @@
     const container = document.getElementById('cart-items-container');
     const total = document.getElementById('cart-grand-total');
     if(cart.length === 0) {
-      container.innerHTML = '<p style="text-align:center; color:var(--text-muted);">Keranjang kosong.</p>';
+      container.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:3rem 0;">Keranjang belanja Anda masih kosong.</p>';
       total.innerText = "IDR 0";
       return;
     }
     let sum = 0;
-    container.innerHTML = cart.map(item => {
+    container.innerHTML = cart.map((item, i) => {
       sum += item.price;
-      return `<div style="display:flex; gap:1rem; margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:1rem; text-align:left">
-        <img src="${item.img}" style="width:60px; height:80px; object-fit:cover; border-radius:8px;">
-        <div><h4 style="font-size:0.9rem">${item.name}</h4><p style="font-weight:600">IDR ${item.price.toLocaleString('id-ID')}</p></div>
+      return `<div style="display:flex; gap:1.5rem; margin-bottom:1.5rem; border-bottom:1px solid var(--border); padding-bottom:1.5rem; text-align:left; align-items:center;">
+        <img src="${item.img}" style="width:70px; height:90px; object-fit:cover; border-radius:12px;">
+        <div style="flex:1;">
+          <h4 style="font-size:1rem; font-weight:500;">${item.name} (${item.size})</h4>
+          <p style="font-weight:600; color:var(--primary-dark); margin-top:0.3rem;">IDR ${item.price.toLocaleString('id-ID')}</p>
+        </div>
+        <button onclick="removeFromCart(${i})" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fas fa-trash-alt"></i></button>
       </div>`;
     }).join('');
     total.innerText = "IDR " + sum.toLocaleString('id-ID');
   }
+  
+  window.removeFromCart = function(index) {
+    cart.splice(index, 1);
+    document.getElementById('cartBadge').innerText = cart.length;
+    if(cart.length === 0) document.getElementById('cartBadge').style.display = 'none';
+    renderCart();
+  };
 
   function processCheckout(e) {
     e.preventDefault();
-    alert("Pesanan berhasil! Tim kami akan segera menghubungi Anda via WhatsApp.");
-    cart = [];
-    document.getElementById('cartBadge').style.display = 'none';
-    renderCart();
-    navigateToPage('home');
+    alert("Pesanan berhasil dikonfirmasi! Kami akan segera menghubungi Anda via WhatsApp untuk detail pembayaran.");
+    cart = []; document.getElementById('cartBadge').style.display = 'none';
+    renderCart(); navigateToPage('home');
   }
 
-  // Camera logic 
+  // Camera Logic
   const video = document.getElementById('video');
   const openCameraBtn = document.getElementById('openCameraBtn');
   let stream = null;
@@ -958,19 +803,14 @@
       video.srcObject = stream;
       document.getElementById('cameraContainer').style.display = 'block';
       document.getElementById('capturePhotoBtn').disabled = false;
-    } catch(e) { alert("Akses kamera ditolak."); }
+    } catch(e) { alert("Akses kamera ditolak atau tidak tersedia di perangkat ini."); }
   };
   document.getElementById('stopCameraBtn').onclick = () => {
     if(stream) stream.getTracks().forEach(t => t.stop());
     document.getElementById('cameraContainer').style.display = 'none';
   };
 
-  window.onclick = e => {
-    if(e.target.classList.contains('modal')) {
-      closeAffirmationModal();
-      closeProductModal();
-    }
-  };
+  window.onclick = e => { if(e.target.classList.contains('modal')) { closeAffirmationModal(); closeProductModal(); } };
 </script>
 </body>
 </html>
