@@ -101,6 +101,41 @@
       justify-content: center;
     }
 
+    /* ========== SECTION HEADER FRAME (NEW) ========== */
+    .section-header-frame {
+      text-align: center;
+      margin: 5rem auto 3.5rem;
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      max-width: 800px;
+      position: relative;
+    }
+    .section-header-frame::before {
+      content: '●';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 0 15px;
+      color: var(--primary);
+      font-size: 0.8rem;
+    }
+    .section-header-frame h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      margin-bottom: 0.5rem;
+    }
+    .section-header-frame p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
     /* ========== HERO ========== */
     .hero {
       background: linear-gradient(145deg, #fdfbf9 0%, #f4ebe1 100%);
@@ -244,16 +279,6 @@
       cursor: pointer;
       transition: 0.3s;
     }
-    .size-btn {
-      padding: 0.8rem 1.5rem;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: white;
-      cursor: pointer;
-      flex: 1;
-    }
-    .size-btn.active { background: var(--primary-dark); color: white; border-color: var(--primary-dark); }
-    
     .qty-btn {
         width: 35px;
         height: 35px;
@@ -265,9 +290,7 @@
         align-items: center;
         justify-content: center;
         font-weight: 700;
-        transition: 0.2s;
     }
-    .qty-btn:hover { background: var(--gray-light); }
 
     /* ========== UTILS ========== */
     .page { display: none; }
@@ -284,7 +307,6 @@
 </head>
 <body>
 
-<!-- OVERLAY FOR SIDE PANEL -->
 <div id="panelOverlay" class="panel-overlay" onclick="toggleCheckout(false)"></div>
 
 <!-- FLOATING CHECKOUT PANEL -->
@@ -292,9 +314,7 @@
     <span class="close-icon" onclick="toggleCheckout(false)">&times;</span>
     <h2 style="font-weight: 500; border-bottom: 1px solid var(--border); padding-bottom: 1rem;">KERANJANG ANDA</h2>
     
-    <div id="cart-items-container" class="cart-items-list">
-        <!-- Cart Items Go Here -->
-    </div>
+    <div id="cart-items-container" class="cart-items-list"></div>
 
     <div style="border-top: 2px solid var(--dark); padding-top: 1.5rem; margin-bottom: 2rem;">
         <div style="display:flex; justify-content:space-between; font-weight:700; font-size:1.3rem;">
@@ -309,15 +329,14 @@
         <textarea placeholder="Alamat Lengkap" rows="2" required style="width:100%; padding:1rem; border-radius:12px; border:1.5px solid var(--border); margin-bottom:0.8rem; outline:none; font-family:inherit;"></textarea>
         
         <div style="font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem; text-transform: uppercase;">Metode Pembayaran:</div>
-        <select id="paymentMethod" required style="width:100%; padding:1rem; border-radius:12px; border:1.5px solid var(--border); margin-bottom:1.5rem; outline:none; background:white; font-family:inherit; cursor:pointer;">
+        <select id="paymentMethod" required style="width:100%; padding:1rem; border-radius:12px; border:1.5px solid var(--border); margin-bottom:1.5rem; outline:none; background:white; cursor:pointer;">
             <option value="">-- Pilih Pembayaran --</option>
             <option value="BCA">Transfer Bank BCA</option>
             <option value="Mandiri">Transfer Bank Mandiri</option>
             <option value="QRIS">QRIS / ShopeePay / GoPay</option>
             <option value="COD">COD (Bayar di Tempat)</option>
         </select>
-
-        <button type="submit" class="btn-primary">PESAN SEKARANG <i class="fas fa-arrow-right"></i></button>
+        <button type="submit" class="btn-primary">PESAN SEKARANG</button>
     </form>
 </div>
 
@@ -398,10 +417,13 @@
   <!-- COLOR ANALYSIS PAGE -->
   <div id="color-page" class="page">
     <div class="container">
-      <div style="text-align: center; margin: 4rem 0 3rem;">
-        <h2 style="font-size: 2rem; text-transform: uppercase; letter-spacing: 2px;">Color Profile Analysis</h2>
+      <!-- HEADER WITH BORDER FRAME -->
+      <div class="section-header-frame">
+        <h2>Color Profile Analysis</h2>
+        <p>Temukan palet warna yang paling memancarkan auramu berdasarkan analisis undertone kulit.</p>
       </div>
-      <div style="background: white; border-radius: 32px; border: 1.5px solid var(--primary); padding: 5rem 2rem; max-width: 900px; margin: 0 auto 5rem; text-align: center;">
+
+      <div style="background: white; border-radius: 32px; border: 1.5px solid var(--primary); padding: 5rem 2rem; max-width: 900px; margin: 0 auto 5rem; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.02);">
         <i class="fas fa-camera-retro" style="font-size: 3.5rem; color: var(--primary-dark); margin-bottom: 1.5rem;"></i>
         <h3 style="margin-bottom: 1rem; font-weight: 500;">Mulai Analisis Personal Kamu ✨</h3>
         <p style="color: var(--text-muted); margin-bottom: 2.5rem;">Ambil selfie di bawah cahaya matahari natural untuk hasil yang paling akurat.</p>
@@ -412,7 +434,7 @@
         <div id="cameraContainer" style="display: none; margin-top: 2rem;">
           <video id="video" autoplay playsinline style="border-radius: 24px; width: 100%; max-width: 500px;"></video>
           <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
-            <button id="capturePhotoBtn" class="btn-primary" style="width:auto;" disabled>Analisis Sekarang</button>
+            <button id="capturePhotoBtn" class="btn-primary" style="width:auto;">Analisis Sekarang</button>
             <button class="btn-outline" onclick="stopCamera()">Batal</button>
           </div>
         </div>
@@ -423,9 +445,12 @@
   <!-- STYLING PAGE -->
   <div id="styling-page" class="page">
     <div class="container">
-      <div style="text-align: center; margin: 4rem 0 3rem;">
-        <h2 style="font-size: 2rem; text-transform: uppercase; letter-spacing: 2px;">Hijab Styling Guide</h2>
+      <!-- HEADER WITH BORDER FRAME -->
+      <div class="section-header-frame">
+        <h2>Hijab Styling Guide</h2>
+        <p>Panduan langkah demi langkah untuk menyempurnakan penampilan harian Anda.</p>
       </div>
+
       <div class="tutorial-grid">
         <div class="tutorial-card">
           <div class="tutorial-img"><video src="VID%201.mp4" class="styling-video" autoplay loop muted playsinline></video></div>
@@ -458,33 +483,36 @@
   <!-- COLLECTION PAGE -->
   <div id="collection-page" class="page">
     <div class="container">
-      <div style="text-align: center; margin: 4rem 0 3rem;">
-        <h2 style="font-size: 2rem; text-transform: uppercase; letter-spacing: 2px;">Curated Collection</h2>
+      <!-- HEADER WITH BORDER FRAME -->
+      <div class="section-header-frame">
+        <h2>Curated Collection</h2>
+        <p>Koleksi pilihan yang dirancang untuk memberikan kenyamanan dan keanggunan abadi.</p>
       </div>
+
       <div class="product-grid">
         <div class="product-card" onclick="openProductModal('Olive Whisper', 'Autumn Tone', 129000, 'olive whisper.jpeg')">
           <div class="product-img-container"><img src="olive whisper.jpeg" alt="Olive Whisper"></div>
           <h4 style="font-size:1rem; font-weight:500;">Olive Whisper</h4>
           <div style="font-weight:600; margin:0.5rem 0;">IDR 129.000</div>
-          <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Terinspirasi dari harmoni alam, Olive Whisper menonjolkan kehangatan kulit wanita muslim Indonesia.', '🌿 Aku percaya pada kebaikan yang mengalir dalam hidupku.')">Afirmasi</button>
+          <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Harmoni alam yang menonjolkan kehangatan kulit.', '🌿 Aku percaya pada kebaikan yang mengalir.')">Afirmasi</button>
         </div>
         <div class="product-card" onclick="openProductModal('Midnight Sapphire', 'Winter Tone', 149000, 'midnight sapphire.jpeg')">
           <div class="product-img-container"><img src="midnight sapphire.jpeg" alt="Midnight Sapphire"></div>
           <h4 style="font-size:1rem; font-weight:500;">Midnight Sapphire</h4>
           <div style="font-weight:600; margin:0.5rem 0;">IDR 149.000</div>
-          <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Biru gelap yang mewah ini kami desain khusus untuk memancarkan pesona cerah pada cool undertone.', '💙 Cahaya di dalam diriku bersinar semakin terang setiap harinya.')">Afirmasi</button>
+          <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Biru gelap mewah untuk pesona cerah seketika.', '💙 Cahayaku bersinar semakin terang.')">Afirmasi</button>
         </div>
         <div class="product-card" onclick="openProductModal('Rustic Terracotta', 'Neutral Tone', 119000, 'RUSTIC TERACOTTA.jpeg')">
           <div class="product-img-container"><img src="RUSTIC TERACOTTA.jpeg" alt="Rustic Terracotta"></div>
           <h4 style="font-size:1rem; font-weight:500;">Rustic Terracotta</h4>
           <div style="font-weight:600; margin:0.5rem 0;">IDR 119.000</div>
-          <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Warna bumi yang kuat ini akan memberikan kesan eksotis dan anggun pada kulit sawo matang.', '🔥 Aku adalah pribadi yang kuat dan penuh semangat.')">Afirmasi</button>
+          <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Warna bumi yang eksotis dan anggun.', '🔥 Aku pribadi yang kuat dan semangat.')">Afirmasi</button>
         </div>
         <div class="product-card" onclick="openProductModal('Dusty Rose', 'Neutral Tone', 139000, 'dusty rose.jpeg')">
           <div class="product-img-container"><img src="dusty rose.jpeg" alt="Dusty Rose"></div>
           <h4 style="font-size:1rem; font-weight:500;">Dusty Rose</h4>
           <div style="font-weight:600; margin:0.5rem 0;">IDR 139.000</div>
-          <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Lembut dan universal, Dusty Rose memberikan aura ketenangan pada wajahmu.', '🌸 Aku merangkul kelembutan diriku dengan rasa bangga.')">Afirmasi</button>
+          <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Lembut dan universal untuk aura ketenangan.', '🌸 Aku merangkul kelembutan diriku.')">Afirmasi</button>
         </div>
       </div>
     </div>
@@ -493,22 +521,24 @@
   <!-- NOORÉ CARES -->
   <div id="donation-page" class="page">
     <div class="container">
-      <div style="text-align: center; margin: 4rem 0 2rem;">
-        <h2 style="font-size: 2rem; text-transform: uppercase; letter-spacing: 2px;">NOORé Cares</h2>
-        <p style="color: var(--text-muted); max-width: 600px; margin: 10px auto;">Melalui NOORé, Anda tidak hanya mendapatkan kepercayaan diri lewat pilihan warna yang tepat, tetapi juga turut serta dalam memberdayakan masyarakat melalui setiap pembelian.</p>
+      <!-- HEADER WITH BORDER FRAME -->
+      <div class="section-header-frame">
+        <h2>NOORé Cares</h2>
+        <p>Lebih dari sekadar fashion, setiap pembelian Anda membantu memberdayakan masyarakat dan pengrajin lokal.</p>
       </div>
+
       <div style="background: linear-gradient(135deg, #fdfbf9, #f4ebe1); padding: 5rem 2rem; border-radius: 40px; text-align: center; margin-bottom: 5rem;">
         <i class="fas fa-hand-holding-heart" style="font-size: 4rem; color: var(--primary-dark); margin-bottom: 2rem;"></i>
         <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
             <div style="background: white; padding: 2.5rem; border-radius: 32px; flex: 1; min-width: 280px; border: 1px solid var(--border);">
-                <h3 style="font-weight:500; margin-bottom:1rem;">Pelatihan Keterampilan</h3>
-                <p style="color: var(--text-muted); margin-bottom:1.5rem; font-size:0.9rem;">Mendukung muslimah daerah agar mandiri secara ekonomi lewat program menjahit.</p>
+                <h3 style="font-weight:500; margin-bottom:1rem;">Pemberdayaan Wanita</h3>
+                <p style="color: var(--text-muted); margin-bottom:1.5rem; font-size:0.9rem;">Program pelatihan menjahit bagi ibu rumah tangga di daerah rural.</p>
                 <button class="btn-outline">Pelajari Dampak</button>
             </div>
             <div style="background: white; padding: 2.5rem; border-radius: 32px; flex: 1; min-width: 280px; border: 1px solid var(--border);">
                 <h3>Sedekah Hijab</h3>
-                <p style="color: var(--text-muted); margin-bottom:1.5rem; font-size:0.9rem;">Menyalurkan hijab layak pakai dan baru untuk muslimah di seluruh pelosok negeri.</p>
-                <button class="btn-outline" onclick="alert('Terima kasih!')">Donasi Sekarang</button>
+                <p style="color: var(--text-muted); margin-bottom:1.5rem; font-size:0.9rem;">Distribusi hijab layak pakai ke pondok pesantren dan pelosok.</p>
+                <button class="btn-outline" onclick="alert('Donasi Diterima!')">Kirim Donasi</button>
             </div>
         </div>
       </div>
@@ -517,29 +547,28 @@
 </main>
 
 <footer>
-  <p style="font-size:0.85rem; color:var(--text-muted); letter-spacing:1px; padding-bottom: 3rem; text-align: center;">© 2026 NOORé. Crafted with Light and Modesty.</p>
+  <p style="font-size:0.85rem; color:var(--text-muted); letter-spacing:1px; padding-bottom: 3rem; text-align: center;">© 2026 NOORé. Wrapped in Light.</p>
 </footer>
 
-<!-- MODAL AFIRMASI (Melayang Tengah) -->
+<!-- MODALS -->
 <div id="affirmationModal" class="modal">
   <div class="modal-content">
     <span class="close-icon" onclick="closeAffirmationModal()">&times;</span>
     <i class="fas fa-qrcode" style="font-size:2.5rem; color:var(--primary-dark); margin-bottom:1.5rem;"></i>
-    <h3 style="margin-bottom: 1.5rem; font-weight:600; letter-spacing:1px;">FILOSOFI & AFIRMASI</h3>
-    <div style="background: var(--bg-soft); padding: 1.5rem; border-radius: 24px; margin-bottom: 1.5rem; border:1px solid var(--border);">
+    <h3 style="margin-bottom: 1.5rem; font-weight:600; letter-spacing:1px; text-align: center;">FILOSOFI & AFIRMASI</h3>
+    <div style="background: var(--bg-soft); padding: 1.5rem; border-radius: 24px; margin-bottom: 1.5rem; border:1px solid var(--border); text-align: center;">
       <p style="font-size:0.75rem; font-weight:700; color:var(--primary-dark); margin-bottom:0.5rem; text-transform:uppercase;">Filosofi Warna</p>
       <p id="philosophyText" style="font-size: 0.95rem; color: var(--text-muted);"></p>
     </div>
-    <p id="affirmationText" style="font-style: italic; font-weight: 500; font-size: 1.2rem; color:var(--dark); max-width: 90%; margin: 0 auto;"></p>
+    <p id="affirmationText" style="font-style: italic; font-weight: 500; font-size: 1.2rem; color:var(--dark); text-align: center; margin: 0 auto;"></p>
   </div>
 </div>
 
-<!-- MODAL PRODUK (Beli Sekarang) -->
 <div id="productModal" class="modal">
   <div class="modal-content product-modal-wide">
     <span class="close-icon" onclick="closeProductModal()">&times;</span>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; align-items: center;">
-      <div style="border-radius:16px; overflow:hidden;"><img id="pm-img" src="" alt="" style="width:100%; height:auto; display:block;"></div>
+      <div style="border-radius:16px; overflow:hidden;"><img id="pm-img" src="" alt="" style="width:100%; height:auto;"></div>
       <div>
         <h2 id="pm-title" style="font-size:1.8rem; font-weight:500; margin-bottom: 0.5rem;"></h2>
         <p id="pm-desc" style="color: var(--text-muted); font-weight:300; margin-bottom: 1.5rem;"></p>
@@ -553,19 +582,19 @@
         <div style="font-weight: 600; font-size: 0.8rem; margin-bottom: 0.8rem; text-transform: uppercase;">Jumlah:</div>
         <div style="display:flex; align-items:center; gap:15px; margin-bottom:2rem;">
             <button class="qty-btn" onclick="updateQty(-1)">-</button>
-            <span id="pm-qty" style="font-weight:700; font-size:1.1rem; min-width: 20px; text-align: center;">1</span>
+            <span id="pm-qty" style="font-weight:700; font-size:1.1rem; min-width: 25px; text-align: center;">1</span>
             <button class="qty-btn" onclick="updateQty(1)">+</button>
         </div>
 
         <div id="pm-price" style="font-weight: 700; font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 2rem;"></div>
-        <button class="btn-primary" onclick="addToCart()">TAMBAHKAN KE KERANJANG <i class="fas fa-shopping-bag"></i></button>
+        <button class="btn-primary" onclick="addToCart()">TAMBAHKAN KE KERANJANG</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  // Page Navigation
+  // Navigation
   const pages = {
     home: document.getElementById('home-page'),
     color: document.getElementById('color-page'),
@@ -577,75 +606,55 @@
   function navigateToPage(pageId) {
     Object.values(pages).forEach(p => p.classList.remove('active-page'));
     if(pages[pageId]) pages[pageId].classList.add('active-page');
-    
     document.querySelectorAll('.nav-links button').forEach(btn => {
         if(btn.getAttribute('data-page') === pageId) btn.classList.add('active');
         else btn.classList.remove('active');
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    toggleCheckout(false); 
+    toggleCheckout(false);
   }
 
   document.querySelectorAll('.nav-links button[data-page]').forEach(btn => {
     btn.onclick = () => navigateToPage(btn.getAttribute('data-page'));
   });
 
-  // Float Panels (Checkout)
+  // Panels & Modals
   function toggleCheckout(open) {
     const panel = document.getElementById('checkout-panel');
     const overlay = document.getElementById('panelOverlay');
-    if(open) {
-        panel.classList.add('active');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    } else {
-        panel.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
+    if(open) { panel.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    else { panel.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = 'auto'; }
   }
 
-  // Floating Modals (Affirmation)
   function openAffirmationModal(phi, aff) {
     document.getElementById('philosophyText').innerText = phi;
     document.getElementById('affirmationText').innerText = `"${aff}"`;
     document.getElementById('affirmationModal').style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
-  function closeAffirmationModal() {
-    document.getElementById('affirmationModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
+  function closeAffirmationModal() { document.getElementById('affirmationModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-  // Product Purchase Modal
+  // Product Logic
   let selectedProd = {};
   let basePrice = 0;
   let currentAddon = 0;
   let currentQty = 1;
 
   function openProductModal(name, desc, price, img) {
-    basePrice = price;
-    currentAddon = 0;
-    currentQty = 1;
+    basePrice = price; currentAddon = 0; currentQty = 1;
     selectedProd = { name, desc, price, img, size: 'Standard', qty: 1 };
-    
     document.getElementById('pm-title').innerText = name;
     document.getElementById('pm-desc').innerText = desc;
     document.getElementById('pm-img').src = img;
     document.getElementById('pm-qty').innerText = currentQty;
-    
     document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.size-btn').classList.add('active');
-    
     updateDisplayPrice();
     document.getElementById('productModal').style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
 
-  function closeProductModal() {
-    document.getElementById('productModal').style.display = 'none';
-    document.body.style.overflow = 'auto';
-  }
+  function closeProductModal() { document.getElementById('productModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
   function updatePrice(addon, btn) {
     currentAddon = addon;
@@ -670,40 +679,27 @@
     document.getElementById('pm-price').innerText = "IDR " + totalPrice.toLocaleString('id-ID');
   }
 
-  // Cart Management
+  // Cart
   let cart = [];
   function addToCart() {
-    // Check if item with same name & size already in cart
     const existingIndex = cart.findIndex(item => item.name === selectedProd.name && item.size === selectedProd.size);
-    
     if (existingIndex > -1) {
         cart[existingIndex].qty += selectedProd.qty;
         cart[existingIndex].totalPrice = cart[existingIndex].unitPrice * cart[existingIndex].qty;
-    } else {
-        cart.push({...selectedProd});
-    }
-
-    updateCartBadge();
-    closeProductModal();
-    renderCart();
-    toggleCheckout(true);
+    } else { cart.push({...selectedProd}); }
+    updateCartBadge(); closeProductModal(); renderCart(); toggleCheckout(true);
   }
 
   function updateCartBadge() {
     const count = cart.reduce((sum, item) => sum + item.qty, 0);
     const badge = document.getElementById('cartBadge');
-    badge.innerText = count;
-    badge.style.display = count > 0 ? 'flex' : 'none';
+    badge.innerText = count; badge.style.display = count > 0 ? 'flex' : 'none';
   }
 
   function renderCart() {
     const container = document.getElementById('cart-items-container');
     const totalEl = document.getElementById('cart-grand-total');
-    if(cart.length === 0) {
-      container.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:3rem 0;">Belum ada item.</p>';
-      totalEl.innerText = "IDR 0";
-      return;
-    }
+    if(cart.length === 0) { container.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:3rem 0;">Keranjang kosong.</p>'; totalEl.innerText = "IDR 0"; return; }
     let grandTotal = 0;
     container.innerHTML = cart.map((item, i) => {
       grandTotal += item.totalPrice;
@@ -711,7 +707,7 @@
         <img src="${item.img}" style="width:60px; height:80px; object-fit:cover; border-radius:8px;">
         <div style="flex:1;">
           <h4 style="font-size:0.9rem; font-weight:600;">${item.name} (${item.size})</h4>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Jml: ${item.qty} x ${item.unitPrice.toLocaleString('id-ID')}</p>
+          <p style="font-size:0.8rem; color:var(--text-muted);">${item.qty} x ${item.unitPrice.toLocaleString('id-ID')}</p>
           <p style="color:var(--primary-dark); font-weight:700;">IDR ${item.totalPrice.toLocaleString('id-ID')}</p>
         </div>
         <button onclick="removeFromCart(${i})" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="fas fa-trash-alt"></i></button>
@@ -720,21 +716,14 @@
     totalEl.innerText = "IDR " + grandTotal.toLocaleString('id-ID');
   }
 
-  window.removeFromCart = (index) => {
-    cart.splice(index, 1);
-    updateCartBadge();
-    renderCart();
-  };
+  window.removeFromCart = (index) => { cart.splice(index, 1); updateCartBadge(); renderCart(); };
 
   function processCheckout(e) {
     e.preventDefault();
-    if (cart.length === 0) return alert("Keranjang Anda kosong.");
+    if (cart.length === 0) return;
     const method = document.getElementById('paymentMethod').value;
-    alert(`Terima kasih! Pesanan Anda telah diterima dengan metode ${method}. Tim kami akan menghubungi Anda via WhatsApp.`);
-    cart = []; 
-    updateCartBadge();
-    renderCart(); 
-    toggleCheckout(false);
+    alert(`Terima kasih! Pesanan diproses dengan metode ${method}. Hubungi WA kami segera.`);
+    cart = []; updateCartBadge(); renderCart(); toggleCheckout(false);
   }
 
   window.onclick = e => { if(e.target.classList.contains('modal')) { closeAffirmationModal(); closeProductModal(); } };
