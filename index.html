@@ -34,6 +34,46 @@
       overflow-x: hidden;
     }
 
+    /* ========== CUSTOM KEYFRAMES FOR BEAUTIFUL ANIMATIONS ========== */
+    @keyframes morphBlob {
+      0%, 100% { 
+        border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; 
+        transform: translate(0, 0) rotate(0deg); 
+      }
+      34% { 
+        border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%; 
+        transform: translate(15px, 30px) rotate(120deg); 
+      }
+      66% { 
+        border-radius: 40% 60% 35% 65% / 40% 60% 35% 65%; 
+        transform: translate(-20px, -15px) rotate(240deg); 
+      }
+    }
+
+    @keyframes elegantFadeUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(35px); 
+        filter: blur(4px);
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+        filter: blur(0);
+      }
+    }
+
+    @keyframes pulseSoft {
+      0% { box-shadow: 0 0 0 0 rgba(181, 141, 113, 0.4); }
+      70% { box-shadow: 0 0 0 12px rgba(181, 141, 113, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(181, 141, 113, 0); }
+    }
+
+    @keyframes bounceMini {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -59,85 +99,13 @@
       letter-spacing: 2px;
     }
     .logo span {
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      display: block;
-      text-transform: uppercase;
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-    .nav-links button {
-      background: none;
-      border: none;
-      font-size: 0.85rem;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
-    .nav-links button.active {
-      color: var(--primary-dark);
-      border-bottom: 1px solid var(--primary-dark);
-    }
-    
-    .cart-btn {
-      position: relative;
-      cursor: pointer;
-      font-size: 1.2rem;
-    }
-    #cartBadge {
-      position: absolute;
-      top: -8px;
-      right: -10px;
-      background: var(--primary-dark);
-      color: white;
-      font-size: 0.6rem;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
+    .nav-links .btn-outline:hover {
+      border-color: var(--dark);
+      color: var(--dark);
+      background: var(--dark);
     }
 
-    /* ========== SECTION HEADER FRAME ========== */
-    .section-header-frame {
-      text-align: center;
-      margin: 5rem auto 3.5rem;
-      padding: 2.5rem 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      max-width: 800px;
-      position: relative;
-    }
-    .section-header-frame::before {
-      content: '●';
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      padding: 0 15px;
-      color: var(--primary);
-      font-size: 0.8rem;
-    }
-    .section-header-frame h2 {
-      font-size: 2rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      margin-bottom: 0.5rem;
-    }
-    .section-header-frame p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* ========== HERO ========== */
+    /* ========== HERO WITH ANIMATED BLOBS ========== */
     .hero {
       background: linear-gradient(145deg, #fdfbf9 0%, #f4ebe1 100%);
       padding: 8rem 2rem;
@@ -145,9 +113,60 @@
       border-radius: 280px 280px 32px 32px;
       margin: 3rem auto 0;
       max-width: 1000px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(181, 141, 113, 0.08);
+    }
+    
+    /* Glowing Blurred Blobs Background */
+    .glow-blob {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      filter: blur(80px);
+      opacity: 0.45;
+      z-index: 0;
+      pointer-events: none;
+      animation: morphBlob 16s ease-in-out infinite;
+    }
+    .blob-1 {
+      top: -30px;
+      left: 15%;
+      background: #eed7c5;
+    }
+    .blob-2 {
+      bottom: -40px;
+      right: 15%;
+      background: #e0ccbe;
+      animation-delay: -6s;
     }
 
-    /* ========== FABRIC BAR ========== */
+    .hero h2 {
+      font-size: 3.2rem;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+      animation: elegantFadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .hero p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: elegantFadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+    }
+    .hero .btn-primary {
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: elegantFadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards, pulseSoft 3s infinite;
+    }
+
+    /* ========== FABRIC BAR WITH MICRO-BOUNCE ========== */
     .fabric-bar {
       background: white;
       padding: 1.5rem;
@@ -161,8 +180,29 @@
       position: relative;
       z-index: 10;
     }
-    .fabric-item { text-align: center; font-size: 0.75rem; text-transform: uppercase; }
-    .fabric-item i { font-size: 1.6rem; color: var(--primary-dark); margin-bottom: 0.5rem; display: block; }
+    .fabric-item { 
+      text-align: center; 
+      font-size: 0.75rem; 
+      text-transform: uppercase; 
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .fabric-item:hover {
+      transform: scale(1.05);
+    }
+    .fabric-item:hover i {
+      animation: bounceMini 0.5s ease infinite alternate;
+    }
+    .fabric-item i { 
+      font-size: 1.6rem; 
+      color: var(--primary-dark); 
+      margin-bottom: 0.5rem; 
+      display: block; 
+      transition: color 0.3s ease;
+    }
+    .fabric-item:hover i {
+      color: var(--dark);
+    }
 
     /* ========== QR CARD (LEAF) ========== */
     .qr-card {
@@ -449,8 +489,12 @@
   <div id="home-page" class="page active-page">
     <div class="container">
       <div class="hero">
-        <h2 style="font-size: 3.2rem; font-weight: 300; margin-bottom: 1.2rem;">Discover Confidence,<br>Wrapped in Light.</h2>
-        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2.5rem;">NOORé — Modest fashion dengan kurasi warna personal berbasis AI & sentuhan afirmasi yang menenangkan.</p>
+        <!-- Glowing Blobs -->
+        <div class="glow-blob blob-1"></div>
+        <div class="glow-blob blob-2"></div>
+
+        <h2>Discover Confidence,<br>Wrapped in Light.</h2>
+        <p>NOORé — Modest fashion dengan kurasi warna personal berbasis AI & sentuhan afirmasi yang menenangkan.</p>
         <button class="btn-primary" style="width: auto; padding: 1rem 3rem;" onclick="navigateToPage('color')">
           Find Your Season <i class="fas fa-arrow-right"></i>
         </button>
