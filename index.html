@@ -7,6 +7,7 @@
   <!-- Google Fonts: Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
   <style>
     * {
       margin: 0;
@@ -101,7 +102,7 @@
       justify-content: center;
     }
 
-    /* ========== SECTION HEADER FRAME (NEW) ========== */
+    /* ========== SECTION HEADER FRAME ========== */
     .section-header-frame {
       text-align: center;
       margin: 5rem auto 3.5rem;
@@ -279,6 +280,33 @@
       cursor: pointer;
       transition: 0.3s;
     }
+
+    /* PILIH UKURAN BUTTONS */
+    .size-btn {
+      padding: 0.9rem 1.2rem;
+      border: 2px solid var(--border); 
+      border-radius: 50px; 
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.85rem;
+      flex: 1;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .size-btn.active { 
+        background: var(--primary-dark); 
+        color: white; 
+        border-color: var(--primary-dark);
+        box-shadow: 0 4px 12px rgba(181, 141, 113, 0.3); 
+    }
+    .size-btn:hover:not(.active) {
+        border-color: var(--primary);
+        color: var(--primary-dark);
+    }
+    
     .qty-btn {
         width: 35px;
         height: 35px;
@@ -290,6 +318,63 @@
         align-items: center;
         justify-content: center;
         font-weight: 700;
+    }
+
+    /* MOCKUP CAMERA SIMULATION STYLES */
+    .camera-mockup-box {
+      width: 100%;
+      max-width: 500px;
+      height: 320px;
+      background: linear-gradient(135deg, #f5eae1, #e9dfd5);
+      border-radius: 24px;
+      margin: 1.5rem auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 2px solid var(--primary-dark);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .scanner-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--primary-dark);
+      opacity: 0.6;
+      box-shadow: 0 0 12px var(--primary-dark);
+      animation: scanEffect 3s linear infinite;
+    }
+    @keyframes scanEffect {
+      0% { top: 0%; }
+      50% { top: 100%; }
+      100% { top: 0%; }
+    }
+
+    /* CUSTOM TOAST NOTIFICATION */
+    #customToast {
+      position: fixed;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--dark);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      z-index: 2000;
+      transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #customToast.show {
+      top: 30px;
     }
 
     /* ========== UTILS ========== */
@@ -417,7 +502,6 @@
   <!-- COLOR ANALYSIS PAGE -->
   <div id="color-page" class="page">
     <div class="container">
-      <!-- HEADER WITH BORDER FRAME -->
       <div class="section-header-frame">
         <h2>Color Profile Analysis</h2>
         <p>Temukan palet warna yang paling memancarkan auramu berdasarkan analisis undertone kulit.</p>
@@ -426,18 +510,36 @@
       <div style="background: white; border-radius: 32px; border: 1.5px solid var(--primary); padding: 5rem 2rem; max-width: 900px; margin: 0 auto 5rem; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.02);">
         <i class="fas fa-camera-retro" style="font-size: 3.5rem; color: var(--primary-dark); margin-bottom: 1.5rem;"></i>
         <h3 style="margin-bottom: 1rem; font-weight: 500;">Mulai Analisis Personal Kamu ✨</h3>
-        <p style="color: var(--text-muted); margin-bottom: 2.5rem;">Ambil selfie di bawah cahaya matahari natural untuk hasil yang paling akurat.</p>
-        <div style="display: flex; gap: 1rem; justify-content: center;">
-          <button id="openCameraBtn" class="btn-outline" style="padding: 1rem 2.5rem;"><i class="fas fa-camera"></i> Ambil Foto</button>
+        <p style="color: var(--text-muted); margin-bottom: 2.5rem;">Ambil selfie di bawah cahaya matahari natural atau gunakan simulasi cerdas untuk hasil instan.</p>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <button id="openCameraBtn" class="btn-outline" style="padding: 1rem 2.5rem;"><i class="fas fa-camera"></i> Aktifkan Kamera</button>
           <button id="uploadBtn" class="btn-outline" style="padding: 1rem 2.5rem;"><i class="fas fa-image"></i> Pilih Galeri</button>
         </div>
+
         <div id="cameraContainer" style="display: none; margin-top: 2rem;">
-          <video id="video" autoplay playsinline style="border-radius: 24px; width: 100%; max-width: 500px;"></video>
+          
+          <!-- Mockup Simulation Box (Muncul jika kamera diblokir browser sandbox) -->
+          <div id="cameraMockup" class="camera-mockup-box" style="display: none;">
+            <div class="scanner-line"></div>
+            <i class="fas fa-face-smile" style="font-size: 4rem; color: var(--primary-dark); margin-bottom: 1rem;"></i>
+            <p style="font-weight: 600; font-size: 1.1rem; margin-bottom: 0.3rem;">Mode Simulasi Kamera Aktif ✨</p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); max-width: 80%; text-align: center;">Browser memblokir kamera fisik di dalam preview sandbox. Tenang, Anda tetap bisa melakukan simulasi analisis wajah!</p>
+          </div>
+
+          <!-- Video fisik jika diizinkan browser luar -->
+          <video id="video" autoplay playsinline style="border-radius: 24px; width: 100%; max-width: 500px; display: none; margin: 0 auto; border: 2px solid var(--primary-dark);"></video>
+          
           <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center;">
-            <button id="capturePhotoBtn" class="btn-primary" style="width:auto;">Analisis Sekarang</button>
+            <button id="capturePhotoBtn" class="btn-primary" style="width:auto;">Analisis Sekarang <i class="fas fa-magic"></i></button>
             <button class="btn-outline" onclick="stopCamera()">Batal</button>
           </div>
         </div>
+
+        <!-- HIDDEN INPUT YANG DIPERLUKAN -->
+        <input type="file" id="uploadPhoto" accept="image/*" style="display: none;">
+        <canvas id="hiddenCanvas" style="display: none;"></canvas>
+        <div id="analysisResult" style="margin-top: 3rem; text-align: left; display: none; padding: 2rem; background: var(--bg-soft); border-radius: 24px; border: 1px solid var(--border);"></div>
       </div>
     </div>
   </div>
@@ -445,7 +547,6 @@
   <!-- STYLING PAGE -->
   <div id="styling-page" class="page">
     <div class="container">
-      <!-- HEADER WITH BORDER FRAME -->
       <div class="section-header-frame">
         <h2>Hijab Styling Guide</h2>
         <p>Panduan langkah demi langkah untuk menyempurnakan penampilan harian Anda.</p>
@@ -483,32 +584,31 @@
   <!-- COLLECTION PAGE -->
   <div id="collection-page" class="page">
     <div class="container">
-      <!-- HEADER WITH BORDER FRAME -->
       <div class="section-header-frame">
         <h2>Curated Collection</h2>
         <p>Koleksi pilihan yang dirancang untuk memberikan kenyamanan dan keanggunan abadi.</p>
       </div>
 
       <div class="product-grid">
-        <div class="product-card" onclick="openProductModal('Olive Whisper', 'Autumn Tone', 129000, 'olive whisper.jpeg')">
+        <div class="product-card" onclick="openProductModal('Olive Whisper', 'Voal Premium', 129000, 'olive whisper.jpeg')">
           <div class="product-img-container"><img src="olive whisper.jpeg" alt="Olive Whisper"></div>
           <h4 style="font-size:1rem; font-weight:500;">Olive Whisper</h4>
           <div style="font-weight:600; margin:0.5rem 0;">IDR 129.000</div>
           <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Harmoni alam yang menonjolkan kehangatan kulit.', '🌿 Aku percaya pada kebaikan yang mengalir.')">Afirmasi</button>
         </div>
-        <div class="product-card" onclick="openProductModal('Midnight Sapphire', 'Winter Tone', 149000, 'midnight sapphire.jpeg')">
+        <div class="product-card" onclick="openProductModal('Midnight Sapphire', 'Jersey Blend', 149000, 'midnight sapphire.jpeg')">
           <div class="product-img-container"><img src="midnight sapphire.jpeg" alt="Midnight Sapphire"></div>
           <h4 style="font-size:1rem; font-weight:500;">Midnight Sapphire</h4>
           <div style="font-weight:600; margin:0.5rem 0;">IDR 149.000</div>
           <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Biru gelap mewah untuk pesona cerah seketika.', '💙 Cahayaku bersinar semakin terang.')">Afirmasi</button>
         </div>
-        <div class="product-card" onclick="openProductModal('Rustic Terracotta', 'Neutral Tone', 119000, 'RUSTIC TERACOTTA.jpeg')">
+        <div class="product-card" onclick="openProductModal('Rustic Terracotta', 'Viscose Silk', 119000, 'RUSTIC TERACOTTA.jpeg')">
           <div class="product-img-container"><img src="RUSTIC TERACOTTA.jpeg" alt="Rustic Terracotta"></div>
           <h4 style="font-size:1rem; font-weight:500;">Rustic Terracotta</h4>
           <div style="font-weight:600; margin:0.5rem 0;">IDR 119.000</div>
           <button class="btn-outline" style="font-size:0.7rem; padding: 0.5rem 1rem;" onclick="event.stopPropagation(); openAffirmationModal('Warna bumi yang eksotis dan anggun.', '🔥 Aku pribadi yang kuat dan semangat.')">Afirmasi</button>
         </div>
-        <div class="product-card" onclick="openProductModal('Dusty Rose', 'Neutral Tone', 139000, 'dusty rose.jpeg')">
+        <div class="product-card" onclick="openProductModal('Dusty Rose', 'Chiffon Premium', 139000, 'dusty rose.jpeg')">
           <div class="product-img-container"><img src="dusty rose.jpeg" alt="Dusty Rose"></div>
           <h4 style="font-size:1rem; font-weight:500;">Dusty Rose</h4>
           <div style="font-weight:600; margin:0.5rem 0;">IDR 139.000</div>
@@ -521,7 +621,6 @@
   <!-- NOORÉ CARES -->
   <div id="donation-page" class="page">
     <div class="container">
-      <!-- HEADER WITH BORDER FRAME -->
       <div class="section-header-frame">
         <h2>NOORé Cares</h2>
         <p>Lebih dari sekadar fashion, setiap pembelian Anda membantu memberdayakan masyarakat dan pengrajin lokal.</p>
@@ -533,12 +632,12 @@
             <div style="background: white; padding: 2.5rem; border-radius: 32px; flex: 1; min-width: 280px; border: 1px solid var(--border);">
                 <h3 style="font-weight:500; margin-bottom:1rem;">Pemberdayaan Wanita</h3>
                 <p style="color: var(--text-muted); margin-bottom:1.5rem; font-size:0.9rem;">Program pelatihan menjahit bagi ibu rumah tangga di daerah rural.</p>
-                <button class="btn-outline">Pelajari Dampak</button>
+                <button class="btn-outline" onclick="showToast('Terima kasih! Kami akan mendata ketertarikan Anda.')">Pelajari Dampak</button>
             </div>
             <div style="background: white; padding: 2.5rem; border-radius: 32px; flex: 1; min-width: 280px; border: 1px solid var(--border);">
                 <h3>Sedekah Hijab</h3>
                 <p style="color: var(--text-muted); margin-bottom:1.5rem; font-size:0.9rem;">Distribusi hijab layak pakai ke pondok pesantren dan pelosok.</p>
-                <button class="btn-outline" onclick="alert('Donasi Diterima!')">Kirim Donasi</button>
+                <button class="btn-outline" onclick="showToast('Terima kasih! Donasi Anda sedang diproses.')">Kirim Donasi</button>
             </div>
         </div>
       </div>
@@ -546,11 +645,12 @@
   </div>
 </main>
 
+<!-- FOOTER -->
 <footer>
   <p style="font-size:0.85rem; color:var(--text-muted); letter-spacing:1px; padding-bottom: 3rem; text-align: center;">© 2026 NOORé. Wrapped in Light.</p>
 </footer>
 
-<!-- MODALS -->
+<!-- MODAL AFIRMASI (Melayang Tengah) -->
 <div id="affirmationModal" class="modal">
   <div class="modal-content">
     <span class="close-icon" onclick="closeAffirmationModal()">&times;</span>
@@ -564,6 +664,7 @@
   </div>
 </div>
 
+<!-- MODAL PRODUK -->
 <div id="productModal" class="modal">
   <div class="modal-content product-modal-wide">
     <span class="close-icon" onclick="closeProductModal()">&times;</span>
@@ -593,6 +694,12 @@
   </div>
 </div>
 
+<!-- CUSTOM TOAST MELAYANG -->
+<div id="customToast">
+  <i class="fas fa-check-circle" style="color: #6B8E23; font-size: 1.2rem;"></i>
+  <span id="toastMessage">Pesan Toast</span>
+</div>
+
 <script>
   // Navigation
   const pages = {
@@ -617,6 +724,17 @@
   document.querySelectorAll('.nav-links button[data-page]').forEach(btn => {
     btn.onclick = () => navigateToPage(btn.getAttribute('data-page'));
   });
+
+  // Premium Toast System
+  function showToast(message) {
+    const toast = document.getElementById('customToast');
+    const toastMessage = document.getElementById('toastMessage');
+    toastMessage.innerText = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }
 
   // Panels & Modals
   function toggleCheckout(open) {
@@ -688,6 +806,7 @@
         cart[existingIndex].totalPrice = cart[existingIndex].unitPrice * cart[existingIndex].qty;
     } else { cart.push({...selectedProd}); }
     updateCartBadge(); closeProductModal(); renderCart(); toggleCheckout(true);
+    showToast('Produk ditambahkan ke keranjang!');
   }
 
   function updateCartBadge() {
@@ -704,7 +823,7 @@
     container.innerHTML = cart.map((item, i) => {
       grandTotal += item.totalPrice;
       return `<div style="display:flex; gap:1rem; margin-bottom:1.2rem; border-bottom:1px solid var(--border); padding-bottom:1rem; align-items:center;">
-        <img src="${item.img}" style="width:60px; height:80px; object-fit:cover; border-radius:8px;">
+        <img src="${item.img}" style="width:60px; height:80px; object-fit:cover; border-radius:8px;" onerror="this.src='https://placehold.co/120x160/f5f2ef/3e3834?text=Hijab'">
         <div style="flex:1;">
           <h4 style="font-size:0.9rem; font-weight:600;">${item.name} (${item.size})</h4>
           <p style="font-size:0.8rem; color:var(--text-muted);">${item.qty} x ${item.unitPrice.toLocaleString('id-ID')}</p>
@@ -716,15 +835,173 @@
     totalEl.innerText = "IDR " + grandTotal.toLocaleString('id-ID');
   }
 
-  window.removeFromCart = (index) => { cart.splice(index, 1); updateCartBadge(); renderCart(); };
+  window.removeFromCart = (index) => { cart.splice(index, 1); updateCartBadge(); renderCart(); showToast('Item dihapus dari keranjang.'); };
 
   function processCheckout(e) {
     e.preventDefault();
     if (cart.length === 0) return;
     const method = document.getElementById('paymentMethod').value;
-    alert(`Terima kasih! Pesanan diproses dengan metode ${method}. Hubungi WA kami segera.`);
+    showToast(`Pesanan diproses via ${method}!`);
     cart = []; updateCartBadge(); renderCart(); toggleCheckout(false);
   }
+
+  // Camera & Color Analysis Logic
+  const video = document.getElementById('video');
+  const openCameraBtn = document.getElementById('openCameraBtn');
+  const capturePhotoBtn = document.getElementById('capturePhotoBtn');
+  const cameraContainer = document.getElementById('cameraContainer');
+  const cameraMockup = document.getElementById('cameraMockup');
+  const uploadPhotoInput = document.getElementById('uploadPhoto');
+  const uploadBtn = document.getElementById('uploadBtn');
+  const canvas = document.getElementById('hiddenCanvas');
+  const ctx = canvas.getContext('2d');
+  
+  let stream = null;
+  let isSimulation = false;
+
+  window.stopCamera = function() {
+    if(stream) {
+      stream.getTracks().forEach(t => t.stop());
+      stream = null;
+    }
+    video.srcObject = null;
+    video.style.display = 'none';
+    if (cameraMockup) cameraMockup.style.display = 'none';
+    cameraContainer.style.display = 'none';
+    isSimulation = false;
+  }
+
+  openCameraBtn.onclick = async () => {
+    isSimulation = false;
+    cameraContainer.style.display = 'block';
+    video.style.display = 'block';
+    if (cameraMockup) cameraMockup.style.display = 'none';
+    capturePhotoBtn.disabled = false;
+
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 } });
+      video.srcObject = stream;
+    } catch(e) {
+      console.warn("Kamera tidak dapat diakses (kemungkinan diblokir sandbox preview). Mengaktifkan Mode Simulasi.");
+      isSimulation = true;
+      video.style.display = 'none';
+      if (cameraMockup) cameraMockup.style.display = 'flex';
+    }
+  };
+
+  function analyzeSeasonFromImageData(imageData, width, height) {
+    const sampleW = Math.min(width, 80);
+    const sampleH = Math.min(height, 80);
+    const startX = (width/2) - (sampleW/2);
+    const startY = (height/2) - (sampleH/2);
+    let rSum=0, gSum=0, bSum=0, total=0;
+    for(let y=startY; y<startY+sampleH; y++){
+      for(let x=startX; x<startX+sampleW; x++){
+        const idx = (y * width + x) * 4;
+        rSum += imageData[idx];
+        gSum += imageData[idx+1];
+        bSum += imageData[idx+2];
+        total++;
+      }
+    }
+    const avgR = rSum/total, avgG = gSum/total, avgB = bSum/total;
+    const isWarm = (avgR > avgB + 10 && avgG > avgB + 5);
+    const isCool = (avgB > avgR + 12);
+    let season = "", badgeClass = "", palette = "", hijabRec = "", undertoneType = "";
+    if (isWarm) {
+      season = "Autumn Palette";
+      badgeClass = "warm-badge";
+      palette = "Olive, mustard, terracotta, caramel, rust";
+      hijabRec = "Olive Whisper, Rustic Terracotta, Mustard Yellow";
+      undertoneType = "Warm Tone";
+    } else if (isCool) {
+      season = "Winter Palette";
+      badgeClass = "cool-badge";
+      palette = "Sapphire, emerald, dusty pink, charcoal, pure white";
+      hijabRec = "Midnight Sapphire, Dusty Rose, Silver Grey";
+      undertoneType = "Cool Tone";
+    } else {
+      season = "Neutral Palette";
+      badgeClass = "cool-badge";
+      palette = "Dusty rose, sage green, soft cream, taupe";
+      hijabRec = "Dusty Rose, Sand Beige, Soft Lavender";
+      undertoneType = "Neutral Tone";
+    }
+    return { season, badgeClass, palette, hijabRec, undertoneType };
+  }
+
+  function getColorChipsFromPalette(palette) {
+    if (palette.includes('olive') || palette.includes('Olive')) return ['#6B8E23', '#D2691E', '#B8860B', '#CD853F'];
+    if (palette.includes('Sapphire')) return ['#0F52BA', '#50C878', '#E0B0D5', '#2F4F4F'];
+    return ['#D2B48C', '#BC8F8F', '#9E7B5E', '#C19A6B'];
+  }
+
+  function displayAnalysisResult(season, badgeClass, palette, hijabRec, undertoneType) {
+    const resultDiv = document.getElementById('analysisResult');
+    const badgeText = undertoneType.toUpperCase();
+    const icon = season.includes("Autumn") ? 'fa-leaf' : (season.includes("Winter") ? 'fa-snowflake' : 'fa-feather-alt');
+    const chips = getColorChipsFromPalette(palette);
+    
+    resultDiv.innerHTML = `
+      <div class="season-badge ${badgeClass}"><i class="fas ${icon}"></i> ${badgeText}</div>
+      <h3 style="font-weight: 500; font-size: 1.5rem; margin-bottom: 0.5rem;">${season}</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Palet terbaik: ${palette}</p>
+      <div class="palette-box" style="display:flex; gap:10px; margin-bottom:1rem;">${chips.map(c => `<div class="color-chip" style="background:${c}; width:30px; height:30px; border-radius:50%;"></div>`).join('')}</div>
+      <div class="rec-list"><i class="fas fa-magic" style="color: var(--primary-dark);"></i> <strong>Rekomendasi Hijab:</strong> ${hijabRec}</div>
+    `;
+    resultDiv.style.display = 'block';
+    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  capturePhotoBtn.onclick = () => {
+    canvas.width = 400;
+    canvas.height = 300;
+
+    if (isSimulation) {
+      // Buat warna kulit simulasi acak
+      const colors = [
+        { r: 218, g: 172, b: 139 }, // Warm Autumn
+        { r: 242, g: 210, b: 189 }, // Cool Winter / Neutral Summer
+        { r: 181, g: 125, b: 90 }    // Deep Warm Autumn
+      ];
+      const chosen = colors[Math.floor(Math.random() * colors.length)];
+      ctx.fillStyle = `rgb(${chosen.r}, ${chosen.g}, ${chosen.b})`;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const res = analyzeSeasonFromImageData(imgData.data, canvas.width, canvas.height);
+      displayAnalysisResult(res.season, res.badgeClass, res.palette, res.hijabRec, res.undertoneType);
+    } else {
+      if(!stream || !video.videoWidth) return showToast("Kamera belum siap.");
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const res = analyzeSeasonFromImageData(imgData.data, canvas.width, canvas.height);
+      displayAnalysisResult(res.season, res.badgeClass, res.palette, res.hijabRec, res.undertoneType);
+    }
+    stopCamera();
+  };
+
+  uploadBtn.onclick = () => uploadPhotoInput.click();
+  uploadPhotoInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const img = new Image();
+    const reader = new FileReader();
+    reader.onload = (ev) => { 
+      img.src = ev.target.result; 
+      img.onload = () => { 
+        canvas.width = img.width; 
+        canvas.height = img.height; 
+        ctx.drawImage(img,0,0); 
+        const idata = ctx.getImageData(0,0,canvas.width,canvas.height); 
+        const res = analyzeSeasonFromImageData(idata.data, canvas.width, canvas.height); 
+        displayAnalysisResult(res.season, res.badgeClass, res.palette, res.hijabRec, res.undertoneType); 
+      }; 
+    };
+    reader.readAsDataURL(file);
+  };
 
   window.onclick = e => { if(e.target.classList.contains('modal')) { closeAffirmationModal(); closeProductModal(); } };
 </script>
